@@ -37,7 +37,7 @@
                                 <tr>
                                     <td><?php echo $row['category_id']; ?></td>
                                     <td><?php echo $row['category_name']; ?></td>
-                                    <td><img src="http://localhost/store2/upload/category_image/<?php echo $row['category_image']; ?>" id="category-thumbnail" alt="category-thumbnail"></td>
+                                    <td><img src="http://localhost/store/upload/category_image/<?php echo $row['category_image']; ?>" id="category-thumbnail" alt="category-thumbnail"></td>
                                     <td><?php echo $row['category_description']; ?></td>
                                     <td><?php echo $row['created_at']; ?></td>
                                     <td><?php echo $row['updated_at']; ?></td>
