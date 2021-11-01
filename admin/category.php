@@ -1,7 +1,9 @@
 
-    <?php include_once '../header.php'; ?>
+    <?php include_once '../header.php';
 
-    <?php include_once 'sidebar.php'; ?>
+    if(isset($_SESSION['admin_userid']) && isset($_SESSION['admin_password'])) { 
+
+        include_once 'sidebar.php'; ?>
 
             <div class="col-sm-10" id="main">
                 <h1>Category</h1>
@@ -10,7 +12,6 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                 Add New Category
                 </button>
-                <p id="warning"><?php echo isset($message) ? $message : '';?></p>
                 
                 <!-- Display Category -->
                 <div class="container">
@@ -28,23 +29,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $sql = "SELECT * FROM category";
-                                $select = mysqli_query($conn, $sql);
-                                    if(mysqli_num_rows($select) > 0) {
-                                        while($row = mysqli_fetch_assoc($select)) {
+                                <?php 
+                                        $category = new category();
+                                        $rows = $category->detailsCategory($id = '');
+                                        foreach($rows as $row) {
                                 ?>
                                 <tr>
                                     <td><?php echo $row['category_id']; ?></td>
                                     <td><?php echo $row['category_name']; ?></td>
-                                    <td><img src="http://localhost/store/upload/category_image/<?php echo $row['category_image']; ?>" id="category-thumbnail" alt="category-thumbnail"></td>
+                                    <td><img src="http://localhost/store2/upload/category_image/<?php echo $row['category_image']; ?>" id="category-thumbnail" alt="category-thumbnail"></td>
                                     <td><?php echo $row['category_description']; ?></td>
                                     <td><?php echo $row['created_at']; ?></td>
                                     <td><?php echo $row['updated_at']; ?></td>
                                     <td><button type="button" class="btn btn-primary category-update" data-toggle="modal" data-target="#categoryUpdateModal" data-id="<?php echo $row['category_id'];?>">Update</button>
                                         <button type="button" class="btn btn-primary category-delete" data-id="<?php echo $row['category_id'];?>">Delete</button></td>
                                 </tr>
-                                <?php       
-                                    }
+                                <?php 
                                 }?>
                             </tbody>
                         </table>
@@ -62,7 +62,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" name="registration" id="registration" enctype="multipart/form-data">
+                            <form method="post" name="registration" id="category-registration" enctype="multipart/form-data">
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="category_name">Category Name</label>
@@ -76,9 +76,10 @@
                                         <label for="category_description">Category Discreption</label>
                                         <textarea type="file" name="category_description" class="form-control" rows="5" placeholder="Category Discreption"></textarea>
                                     </div>
+                                        <p id="warning"><?php echo isset($message) ? $message : '';?></p>
                                         <p id="success"><?php echo isset($success) ? $success : '';?></p>
                                     <input type="hidden" name="action" value="category_register">
-                                    <input type="submit" class="btn btn-primary register-button" value="Register">
+                                    <input type="submit" class="btn btn-primary category-register-button" value="Register">
                                 </div>
                             </form>
                         </div>
@@ -115,7 +116,7 @@
                                     </div>
                                         <p id="success"><?php echo isset($success) ? $success : '';?></p>
                                     <input type="hidden" name="action" value="category_update">
-                                    <input type="submit" class="btn btn-primary register-button" value="Update">
+                                    <input type="submit" class="btn btn-primary category-update-button" value="Update">
                                 </div>
                             </form>
                             </div>
@@ -125,8 +126,10 @@
             </div>
 
 
-    <?php include_once 'sidebar_2.php'; ?>
-
-    <?php include_once '../footer.php'; ?>
+    <?php include_once 'sidebar_2.php';
+    } else {
+        header('Location: index.php');
+    }
+    include_once '../footer.php'; ?>
 
 
