@@ -7,7 +7,7 @@
 <!-- Grid row-->
 <div class="row">
 
-    <div class="logo-image text-center justify-content-center">
+    <div class="logo-image text-center justify-content-center col-sm-12">
 
         <img src="http://localhost/store/images//images.png" alt="logo">
 

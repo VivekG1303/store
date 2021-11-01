@@ -1,6 +1,7 @@
 <?php 
 session_start();
-session_destroy();
+unset($_SESSION['admin_userid']);
+unset($_SESSION['admin_password']);
 header('Location: index.php');
 
 ?>

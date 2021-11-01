@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 
 <div class="container-fluid no-padding">
-        <div class="row py-3">
+        <div class="row">
             <div class="col-sm-2 no-padding" id="sticky-sidebar">
                 <div class="admin-sidebar sticky-top">
                     <div>
@@ -18,6 +18,9 @@
                     </div>
                     <div>
                         <a href="coupen.php">Coupens</a>
+                    </div>
+                    <div>
+                        <a href="carousel.php">Carousel</a>
                     </div>
                     <div>
                         <a href="logout.php">Logout</a>

@@ -5,11 +5,11 @@
         <div class="form-box">
             <form method="post" name="admin" id="admin">
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group col-sm-12">
                             <label for="userid">User ID</label>
                             <input type="text" name="userid" class="form-control" placeholder="User ID">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-sm-12">
                             <label for="password">Password</label>
                             <input type="password" name="password" class="form-control" placeholder="password">
                         </div>
