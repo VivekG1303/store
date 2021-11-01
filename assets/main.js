@@ -20,12 +20,12 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store2/insert.php',
+            url: 'http://localhost/store/insert.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
             success: function(categoryImage){
-                    $("#categoryImage").html("<img src='http://localhost/store2/upload/category_image/"+categoryImage.category_image+"' alt='"+categoryImage.category_image+"'>");
+                    $("#categoryImage").html("<img src='http://localhost/store/upload/category_image/"+categoryImage.category_image+"' alt='"+categoryImage.category_image+"'>");
                     $("#categoryName").val(categoryImage.category_name);
                     $("#categoryDescription").val(categoryImage.category_description);
                 }
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store2/insert.php',
+                    url: 'http://localhost/store/insert.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -72,7 +72,7 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store2/insert.php',
+            url: 'http://localhost/store/insert.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
@@ -104,13 +104,13 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store2/insert.php',
+            url: 'http://localhost/store/insert.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
             success: function(response){
                 $("#productVideo").html('<input type="hidden" name="current_video" val="'+response.detail.product_video+'">');
-                $("#productVideo").html('<video width="400" controls><source src="http://localhost/store2/upload/product_video/'+response.detail.product_video+'" type="video/mp4"></video>');
+                $("#productVideo").html('<video width="400" controls><source src="http://localhost/store/upload/product_video/'+response.detail.product_video+'" type="video/mp4"></video>');
                 $('#productName').val(response.detail.product_name);
                 //$('#productCategory').val(response.detail.product_category);
                 $('#productSKU').val(response.detail.product_sku);
@@ -125,7 +125,7 @@ $(document).ready(function() {
                 }
                 var html = [];
                 for( var i =0; i<response.image.length; i++) {
-                    html.push("<img src='http://localhost/store2/upload/product_image/"+response.image[i]+"' alt='"+response.image[i]+"' id='"+response.detail.product_id+"'><span title='"+response.image[i]+"' id='"+response.detail.product_id+"' class='product-image-remove'>X</span>");
+                    html.push("<img src='http://localhost/store/upload/product_image/"+response.image[i]+"' alt='"+response.image[i]+"' id='"+response.detail.product_id+"'><span title='"+response.image[i]+"' id='"+response.detail.product_id+"' class='product-image-remove'>X</span>");
                 }
                 $("#productImage").html(html.join(''));
                 }
@@ -140,7 +140,7 @@ $(document).ready(function() {
                 if (confirm('Are you sure ?') == true) {
                     $.ajax({
                         type: 'POST',
-                        url: 'http://localhost/store2/insert.php',
+                        url: 'http://localhost/store/insert.php',
                         data: { id:editid , action:action, image:image},
                         dataType: 'json',
                         success: function() {
@@ -165,7 +165,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store2/insert.php',
+                    url: 'http://localhost/store/insert.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -191,7 +191,7 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store2/insert.php',
+            url: 'http://localhost/store/insert.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){

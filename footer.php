@@ -9,7 +9,7 @@
 
     <div class="logo-image text-center justify-content-center">
 
-        <img src="http://localhost/store2/images//images.png" alt="logo">
+        <img src="http://localhost/store/images//images.png" alt="logo">
 
     </div>
 

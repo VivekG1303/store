@@ -267,11 +267,11 @@ if(!empty($_POST)) {
 
             for($i=0; $i<count($image_array); $i++) {
 
-                unlink($_SERVER['DOCUMENT_ROOT'] . "/store2/upload/product_image/".$image_array[$i]);
+                unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_image/".$image_array[$i]);
 
             }
 
-            unlink($_SERVER['DOCUMENT_ROOT'] . "/store2/upload/product_video/".$video);
+            unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_video/".$video);
 
             $sql = "DELETE FROM product WHERE product_id=".$_POST['id'];
 

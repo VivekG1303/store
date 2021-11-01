@@ -4,7 +4,7 @@ class database {
     private $host = 'localhost';
     private $username = 'root';
     private $password = 'Admin@123';
-    private $db = 'store2';
+    private $db = 'store';
 
     protected $conn;
 
@@ -54,7 +54,7 @@ class product extends database {
 
             if(in_array($imagefileType, $imageallowTypes)){
                 // Upload file to server
-                if(file_exists($_SERVER['DOCUMENT_ROOT'] . "/store2/upload/product_image/"  . $imagefileName)==false){
+                if(file_exists($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_image/"  . $imagefileName)==false){
                     $filename[] = $imagefileName;
 
                     move_uploaded_file($files["product_image"]["tmp_name"][$i], $imagetargetFilePath);
@@ -81,7 +81,7 @@ class product extends database {
         if(in_array($videofileType, $videoallowTypes)){
 
             // Upload file to server
-            if(file_exists($_SERVER['DOCUMENT_ROOT'] . "/store2/upload/product_video/"  . $videofileName)==false){
+            if(file_exists($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_video/"  . $videofileName)==false){
                 move_uploaded_file($_FILES["product_video"]["tmp_name"], $videotargetFilePath);
             }else{
                 //rename the file if another one exist
@@ -158,7 +158,7 @@ class product extends database {
             for ($i = 0; $i < count($files['product_image']); $i++) {
 
                 // File upload path
-                $imagetargetDir = $_SERVER['DOCUMENT_ROOT'] . "/store2/upload/product_image/";
+                $imagetargetDir = $_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_image/";
                 $imagefileName = basename($files["product_image"]["name"][$i]);
                 $imagetargetFilePath = $imagetargetDir . $imagefileName;
                 $imagefileType = pathinfo($imagetargetFilePath,PATHINFO_EXTENSION);
@@ -171,7 +171,7 @@ class product extends database {
                 
                 if(in_array($imagefileType, $imageallowTypes)){
                     // Upload file to server
-                    if(file_exists($_SERVER['DOCUMENT_ROOT'] . "/store2/upload/product_image/"  . $imagefileName)==false){
+                    if(file_exists($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_image/"  . $imagefileName)==false){
                         $image_array[] = $imagefileName;
     
                         move_uploaded_file($files["product_image"]["tmp_name"][$i], $imagetargetFilePath);
@@ -200,7 +200,7 @@ class product extends database {
         if (!empty($files['product_video']['name'])) {
             
             // File upload path
-            $videotargetDir = $_SERVER['DOCUMENT_ROOT'] . "/store2/upload/product_video/";
+            $videotargetDir = $_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_video/";
             $videofileName = basename($files["product_video"]["name"]);
             $videotargetFilePath = $videotargetDir . $videofileName;
             $videofileType = pathinfo($videotargetFilePath,PATHINFO_EXTENSION);
@@ -212,7 +212,7 @@ class product extends database {
                 // Upload file to server
                 if(move_uploaded_file($files["product_video"]["tmp_name"], $videotargetFilePath)){
 
-                    unlink($_SERVER['DOCUMENT_ROOT'] . "/store2/upload/product_video/".$current_video);
+                    unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_video/".$current_video);
                     //Create Time
                     $updated_at = date("d-m-Y");
 
@@ -252,7 +252,7 @@ class product extends database {
 
         if (!empty($image)) {
 
-            unlink($_SERVER['DOCUMENT_ROOT'] . "/store2/upload/product_image/".$current_image);
+            unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_image/".$current_image);
 
             if (($key = array_search($_POST['image'], $image_array)) !== false) {
                 unset($image_array[$key]);
