@@ -1,7 +1,9 @@
 
-    <?php include_once '../header.php'; ?>
+    <?php include_once '../header.php';
 
-    <?php include_once 'sidebar.php'; ?>
+    if(isset($_SESSION['admin_userid']) && isset($_SESSION['admin_password'])) { 
+
+        include_once 'sidebar.php'; ?>
 
         <div class="col-sm-10" id="main">
             <h1>Product</h1>
@@ -33,10 +35,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $sql = "SELECT * FROM product";
-                            $select = mysqli_query($conn, $sql);
-                                if(mysqli_num_rows($select) > 0) {
-                                    while($row = mysqli_fetch_assoc($select)) {
+                            <?php  
+                                $product = new product();
+                                $rows = $product->detailsProduct($id = '');
+                                foreach($rows as $row) {
                             ?>
                             <tr>
                                 <td><?php echo $row['product_id']; ?></td>
@@ -52,8 +54,7 @@
                                 <td><button type="button" class="btn btn-primary product-update" data-toggle="modal" data-target="#productUpdateModal" data-id="<?php echo $row['product_id'];?>">Update</button>
                                     <button type="button" class="btn btn-primary product-delete" data-id="<?php echo $row['product_id'];?>">Delete</button></td>
                             </tr>
-                            <?php       
-                                }
+                            <?php
                             }?>
                         </tbody>
                     </table>
@@ -78,17 +79,14 @@
                                         <input type="text" name="product_name" class="form-control" placeholder="Product Name">
                                     </div>
                                     <div class="form-group">
-                                        <label for="product_category">Category</label>
-                                        <select name="product_category" class="form-control">
-                                            <option value="">Select Category</option>
+                                        <label for="product_category">Category</label><br>
                                             <?php $sql = "SELECT category_id, category_name FROM category";
                                                 $select = mysqli_query($conn, $sql);
                                                 if(mysqli_num_rows($select) > 0) {
                                                     while($row = mysqli_fetch_assoc($select)) {?>
-                                            <option value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?></option>
+                                            <input type="checkbox" name="product_category[]" value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?><br>
                                             <?php }
                                             } ?>
-                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="product_sku">Product SKU</label>
@@ -120,7 +118,7 @@
                                         <input type="radio" name="product_status" value="disabled" placeholder="Product Status"><lable for="disabled">Disabled</lable>
                                     </div>
                                     <input type="hidden" name="action" value="product_register">
-                                    <input type="submit" class="btn btn-primary register-button" value="Register">
+                                    <input type="submit" class="btn btn-primary product-register-button" value="Register">
                                 </div>
                             </form>
                         </div>
@@ -145,18 +143,15 @@
                                         <label for="product_name">Product Name</label>
                                         <input type="text" id="productName" name="product_name" class="form-control" placeholder="Product Name">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="product_category">Category</label>
-                                        <select name="product_category" id="productCategory" class="form-control">
-                                            <option value="">Select Category</option>
+                                    <div class="form-group" id="category-checkbox">
+                                        <label for="product_category">Category</label><br>
                                             <?php $sql = "SELECT category_id, category_name FROM category";
                                                 $select = mysqli_query($conn, $sql);
                                                 if(mysqli_num_rows($select) > 0) {
                                                     while($row = mysqli_fetch_assoc($select)) {?>
-                                            <option value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?></option>
+                                            <input type="checkbox" name="product_category[]" value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?><br>
                                             <?php }
                                             } ?>
-                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="product_sku">Product SKU</label>
@@ -192,7 +187,7 @@
                                         <input type="radio" class="disabled" name="product_status" value="disabled" placeholder="Product Status"><lable for="disabled">Disabled</lable>
                                     </div>
                                     <input type="hidden" name="action" value="product_update">
-                                    <input type="submit" class="btn btn-primary register-button" value="Register">
+                                    <input type="submit" class="btn btn-primary product-update-button" value="Register">
                                 </div>
                             </form>
                         </div>
@@ -201,9 +196,10 @@
             </div>
         </div>
 
-
-    <?php include_once 'sidebar_2.php'; ?>
-
-    <?php include_once '../footer.php'; ?>
+    <?php include_once 'sidebar_2.php';
+    } else {
+        header('Location: index.php');
+    }
+    include_once '../footer.php'; ?>
 
 
