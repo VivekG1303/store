@@ -64,15 +64,15 @@
                         <div class="modal-body">
                             <form method="post" name="registration" id="category-registration" enctype="multipart/form-data">
                                 <div class="form-row">
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="category_name">Category Name</label>
                                         <input type="text" name="category_name" class="form-control" placeholder="Category Name">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="category_image">Image</label>
                                         <input type="file" name="category_image" class="form-control" placeholder="Category Image">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="category_description">Category Discreption</label>
                                         <textarea type="file" name="category_description" class="form-control" rows="5" placeholder="Category Discreption"></textarea>
                                     </div>
@@ -100,21 +100,21 @@
                         <div class="modal-body">
                             <form method="post" name="registration" id="category-detail-update" enctype="multipart/form-data">
                                 <div class="form-row">
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="category_name">Category Name</label>
                                         <input type="text" id="categoryName" name="category_name" class="form-control" placeholder="Category Name">
                                     </div>
-                                    <div class="form-group" id="categoryImage">
+                                    <div class="form-group col-sm-12" id="categoryImage">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="category_image_update">Update Image</label>
                                         <input type="file" name="category_image_update" class="form-control" placeholder="Category Image">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="category_description">Category Description</label>
                                         <textarea id="categoryDescription" name="category_description" class="form-control" rows="5" placeholder="Category Discreption"></textarea>
                                     </div>
-                                        <p id="success"><?php echo isset($success) ? $success : '';?></p>
+                                    <p id="success"><?php echo isset($success) ? $success : '';?></p>
                                     <input type="hidden" name="action" value="category_update">
                                     <input type="submit" class="btn btn-primary category-update-button" value="Update">
                                 </div>

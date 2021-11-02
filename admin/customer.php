@@ -68,25 +68,29 @@
                     <div class="modal-body">
                         <form method="post" name="registration" id="registration">
                             <div class="form-row">
-                                <div class="form-group">
+                                <div class="form-group col-sm-12">
                                     <label for="customer_firstname">First Name</label>
                                     <input type="text" name="customer_firstname" class="form-control" placeholder="First Name">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-sm-12">
                                     <label for="customer_lastname">Last Name</label>
                                     <input type="text" name="customer_lastname" class="form-control" placeholder="Last Name">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-sm-12">
                                     <label for="customer_email">Email</label>
                                     <input type="text" name="customer_email" class="form-control" placeholder="Email">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-sm-12">
                                     <label for="customer_mobilenumber">Mobile Number</label>
                                     <input type="text" name="customer_mobilenumber" class="form-control" placeholder="Mobile Number">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group col-sm-12">
                                     <label for="customer_address">Address</label>
                                     <input type="text" name="customer_address" class="form-control" placeholder="Address" multiple>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="customer_password">Password</label>
+                                    <input type="password" name="customer_password" class="form-control" placeholder="Password" multiple>
                                 </div>
                                 <input type="hidden" name="action" value="customer_register">
                                 <input type="submit" class="btn btn-primary register-button" value="Register">

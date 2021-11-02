@@ -2,7 +2,7 @@
     <?php  if(isset($_SESSION['admin_userid']) && isset($_SESSION['admin_password'])) { ?>
     <?php include_once 'sidebar.php'; ?>
     
-            <div class="col-sm-10" id="main">
+            <div class="col-sm-10 no-padding" id="main">
                 <h1>Main Area</h1> 
             </div>
 

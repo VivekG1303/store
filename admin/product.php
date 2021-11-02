@@ -74,11 +74,11 @@
                         <div class="modal-body">
                             <form method="post" name="registration" id="product-registration" enctype="multipart/form-data">
                                 <div class="form-row">
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_name">Product Name</label>
                                         <input type="text" name="product_name" class="form-control" placeholder="Product Name">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_category">Category</label><br>
                                             <?php $sql = "SELECT category_id, category_name FROM category";
                                                 $select = mysqli_query($conn, $sql);
@@ -88,31 +88,31 @@
                                             <?php }
                                             } ?>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_sku">Product SKU</label>
                                         <input type="text" name="product_sku" class="form-control" placeholder="Product SKU">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_description">Product Discreption</label>
                                         <textarea name="product_description" class="form-control" rows="5" placeholder="Product Discreption"></textarea>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_price">Product Price</label>
                                         <input type="text" name="product_price" class="form-control" placeholder="Product Price">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_image">Product Image</label>
                                         <input type="file" name="product_image[]" class="form-control" placeholder="Product Image" multiple>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_video">Product Video</label>
                                         <input type="file" name="product_video" class="form-control" placeholder="Product Video">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_quantity">Product Quantity</label>
                                         <input type="text" name="product_quantity" class="form-control" placeholder="Product Quantity">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_status">Product Status</label><br>
                                         <input type="radio" name="product_status" value="enabled" placeholder="Product Status"><lable for="enabled">Enabled</lable><br>
                                         <input type="radio" name="product_status" value="disabled" placeholder="Product Status"><lable for="disabled">Disabled</lable>
@@ -139,11 +139,11 @@
                         <div class="modal-body">
                             <form method="post" name="registration" id="product-detail-update" enctype="multipart/form-data">
                                 <div class="form-row">
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_name">Product Name</label>
                                         <input type="text" id="productName" name="product_name" class="form-control" placeholder="Product Name">
                                     </div>
-                                    <div class="form-group" id="category-checkbox">
+                                    <div class="form-group col-sm-12" id="category-checkbox">
                                         <label for="product_category">Category</label><br>
                                             <?php $sql = "SELECT category_id, category_name FROM category";
                                                 $select = mysqli_query($conn, $sql);
@@ -153,35 +153,35 @@
                                             <?php }
                                             } ?>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_sku">Product SKU</label>
                                         <input type="text" id="productSKU" name="product_sku" class="form-control" placeholder="Product SKU">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_description">Product Discreption</label>
                                         <textarea name="product_description" id="productDescription" class="form-control" rows="5" placeholder="Product Discreption"></textarea>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_price">Product Price</label>
                                         <input type="text" name="product_price" id="productPrice" class="form-control" placeholder="Product Price">
                                     </div>
-                                    <div id="productImage">
+                                    <div id="productImage col-sm-12">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_image">Product Image</label>
                                         <input type="file" name="product_image[]" class="form-control" placeholder="Product Image" multiple>
                                     </div>
-                                    <div id="productVideo">
+                                    <div id="productVideo col-sm-12">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_video">Product Video</label>
                                         <input type="file" name="product_video" class="form-control" placeholder="Product Video">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_quantity">Product Quantity</label>
                                         <input type="text" name="product_quantity" id="productQuantity" class="form-control" placeholder="Product Quantity">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group col-sm-12">
                                         <label for="product_status">Product Status</label><br>
                                         <input type="radio" class="enabled" name="product_status" value="enabled" placeholder="Product Status"><lable for="enabled">Enabled</lable><br>
                                         <input type="radio" class="disabled" name="product_status" value="disabled" placeholder="Product Status"><lable for="disabled">Disabled</lable>

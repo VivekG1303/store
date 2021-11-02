@@ -57,7 +57,6 @@ $(document).ready(function() {
                     }
 
                 });
-
             });
 
     });
@@ -210,4 +209,86 @@ $(document).ready(function() {
 
     });
 
+    //Category Image Update
+    $('.carousel-update').on('click', function() {
+
+        // Edit ID
+        edit.editid = $(this).data('id');
+
+        // View id
+        var viewid = $(this).data('id');
+
+        var actionid = 'carousel_details';
+            
+            // AJAX Request
+            $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { id:viewid, action:actionid },
+            dataType: 'json',
+            success: function(carosuel){
+                    $("#carouselImage").html("<img src='http://localhost/store/upload/carousel_image/"+carosuel.carousel_image+"' alt='"+carosuel.carousel_image+"'>");
+                    $("#carouselLink").val(carosuel.carousel_link);
+                }
+            });    
+
+            $("#carousel-detail-update").on('submit', function(){
+                
+                var editid = edit.editid;
+
+                var currentImage = $('#carouselImage img').attr('alt');
+
+                var formData = new FormData(this);
+
+                formData.append( 'id', editid);
+                formData.append( 'current_image', currentImage);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost/store/insert.php',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(response) {
+                        if (response == 1) {
+                            window.location.reload();
+                        }  
+                    }
+
+                });
+            });
+    });
+
+    $('.carousel-delete').on('click', function() {
+        var el = this;
+
+        var deleteid = $(this).data('id');
+
+        var action = 'carousel_delete';
+
+        if (confirm('Are you sure ?') == true) {
+            // AJAX Request
+            $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { id:deleteid, action:action },
+            success: function(response){
+    
+                if(response == 1){
+            // Remove row from HTML Table
+            $(el).closest('tr').css('background','tomato');
+            $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+            });
+                }
+    
+            }
+            });
+        }
+
+    });
+
 });
+

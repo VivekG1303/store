@@ -10,7 +10,7 @@
 }
 
 .background {
-    background: #86c6ff;
+    background: #fde6cf;
     height: 100vh;
     display: flex;
     -webkit-box-shadow: 0px 0px 23px -3px rgba(66,66,66,1);
@@ -87,7 +87,7 @@
     margin: 0 0 5px 10px;
 }
 
-#categoryImage img {
+#categoryImage img, #carouselImage img {
     width: 100px;
 }
 
@@ -129,3 +129,22 @@
 .logo-image img {
     width: 120px;
 }
+
+/* Validatin CSS */
+.error {
+    color: #ff0000;
+ }
+
+
+ /* Home Page CSS */
+ .login-navbar {
+     background-color: #eb8b32;
+ }
+
+ .login-navbar a {
+    color: #ffffff;
+ }
+
+ .carousel-image a img{
+    height: 500px;
+ }

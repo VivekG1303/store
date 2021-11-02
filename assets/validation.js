@@ -1,9 +1,13 @@
 //Category Registration Form
 $(document).ready(function() {
     $("#category-registration").validate({
+        errorClass: 'error',
         rules: {
             category_name: "required",
             category_description: "required"
+        },
+        highlight: function(element, error) {
+            $(element).removeClass(error);
         }
     });
     
@@ -16,9 +20,13 @@ $(document).ready(function() {
 //Category Update Form
 $(document).ready(function() {
     $("#category-detail-update").validate({
+        errorClass: 'error',
         rules: {
             category_name: "required",
             category_description: "required"
+        },
+        highlight: function(element, error) {
+            $(element).removeClass(error);
         }
     });
     
@@ -31,6 +39,7 @@ $(document).ready(function() {
 //Product Registration Form
 $(document).ready(function() {
     $("#product-registration").validate({
+        errorClass: 'error',
         rules: {
             product_name: "required",
             product_category: "required",
@@ -43,12 +52,14 @@ $(document).ready(function() {
             product_quantity: {
                 required: true,
                 digits:true
-            },
-            product_status: "required"
+            }
         },
         messages: {
             product_price: "Only digits are allowed",
             product_quantity: "Only digits are allowed"
+        },
+        highlight: function(element, error) {
+            $(element).removeClass(error);
         }
     });
     
@@ -61,6 +72,7 @@ $(document).ready(function() {
 //Product Update Form
 $(document).ready(function() {
     $("#product-detail-update").validate({
+        errorClass: 'error',
         rules: {
             product_name: "required",
             product_category: "required",
@@ -73,12 +85,14 @@ $(document).ready(function() {
             product_quantity: {
                 required: true,
                 digits:true
-            },
-            product_status: "required"
+            }
         },
         messages: {
             product_price: "Only digits are allowed",
             product_quantity: "Only digits are allowed"
+        },
+        highlight: function(element, error) {
+            $(element).removeClass(error);
         }
     });
     
