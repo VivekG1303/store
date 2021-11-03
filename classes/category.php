@@ -1,22 +1,5 @@
 <?php
 
-class database {
-    private $host = 'localhost';
-    private $username = 'root';
-    private $password = 'Admin@123';
-    private $db = 'store';
-
-    protected $conn;
-
-    public function __construct()
-    {
-        $this->conn = mysqli_connect($this->host, $this->username, $this->password, $this->db);
-
-        return $this->conn;
-    }
-
-}
-
 class category extends database {
 
     public function __construct()
@@ -150,7 +133,6 @@ class category extends database {
 
             $select = mysqli_query($this->conn, $sql);
 
-            $data = array();
             while ($row = mysqli_fetch_assoc($select)) {
                 $data = $row;
             }

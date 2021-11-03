@@ -8,3 +8,5 @@ function autoloadModel($className) {
 
 
 spl_autoload_register("autoloadModel");
+
+?>

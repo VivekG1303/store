@@ -1,7 +1,7 @@
 <?php
 
 include_once 'dbconn.php';
-include_once 'class.php';
+include_once 'classes/inc/autoload.php';
 session_start();
 
 if(!empty($_POST)) {
@@ -83,7 +83,7 @@ if(!empty($_POST)) {
             } else {
                 $files = $_FILES;
                 $product_name = $_POST['product_name'];
-                $product_category= implode(',', $_POST['product_category']);
+                $product_category= implode(' , ', $_POST['product_category']);
                 $product_sku = $_POST['product_sku'];
                 $product_description = $_POST['product_description'];
                 $product_price = $_POST['product_price'];
@@ -171,7 +171,7 @@ if(!empty($_POST)) {
             $id = $_POST['id'];
             $files = $_FILES;
             $product_name = $_POST['product_name'];
-            $product_category= implode(',', $_POST['product_category']);
+            $product_category= implode(' , ', $_POST['product_category']);
             $product_sku = $_POST['product_sku'];
             $product_description = $_POST['product_description'];
             $product_price = $_POST['product_price'];
@@ -247,6 +247,24 @@ if(!empty($_POST)) {
             $delete = mysqli_query($conn, $sql);
 
             echo 1;
+
+        }
+
+    }
+
+    if ($_POST['action'] == 'product_quantity_check') {
+
+        if (!empty($_POST['id'])) {
+
+            $id = $_POST['id'];
+            $value = $_POST['value'];
+
+            $check = new product();
+            $data = $check->quantityCheckProduct($id, $value);
+
+            if($data) {
+                echo $data;
+            }
 
         }
 
