@@ -165,13 +165,13 @@
                                         <label for="product_price">Product Price</label>
                                         <input type="text" name="product_price" id="productPrice" class="form-control" placeholder="Product Price">
                                     </div>
-                                    <div id="productImage col-sm-12">
+                                    <div id="productImage">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label for="product_image">Product Image</label>
                                         <input type="file" name="product_image[]" class="form-control" placeholder="Product Image" multiple>
                                     </div>
-                                    <div id="productVideo col-sm-12">
+                                    <div id="productVideo">
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label for="product_video">Product Video</label>

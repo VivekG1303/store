@@ -1,8 +1,18 @@
+
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        <?php 
+        $carousel = new carousel();
+        $rows = $carousel->detailsCarousel($id = '');
+        $i = 0;
+        foreach($rows as $row) {
+            if($i == 0) {
+        ?>  
+        <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $i; ?>" class="active"></li>
+        <?php $i++; } else { ?>
+        <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $i; ?>"></li>
+        <?php $i++; }
+        }?>
     </ol>
     <div class="carousel-inner carousel-image">
         <?php 

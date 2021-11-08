@@ -58,7 +58,6 @@ $(document).ready(function() {
 
                 });
             });
-
     });
 
     $('.category-delete').on('click', function() {
@@ -287,6 +286,31 @@ $(document).ready(function() {
             }
             });
         }
+
+    });
+
+    $('#product-cart-quantity').on('change paste keyup', function() {
+
+        var value = $(this).val();
+
+        var id = $('#qtyCheck').val();
+
+        var action = 'product_quantity_check';
+
+        $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { value:value, id:id, action:action },
+            success: function(response){
+                if (response == 'B') {
+                    $('#warning').text("You have entered more value then availability!");
+                    $('.warning').attr("disabled", true);
+                } else {
+                    $('#warning').text("");
+                    $('.warning').attr("disabled", false);
+                }
+            }
+        });
 
     });
 

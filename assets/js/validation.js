@@ -100,4 +100,23 @@ $(document).ready(function() {
         $("#product-detail-update").submit();
         return false;
     });
+
+    $('#product-cart-quantity').on('change paste keyup', function() {
+
+        $('#qtyForm').validate({
+    
+            rules: {
+                fieldname: {
+                   min: 1
+                }
+            },
+            messages: {
+               fieldname: {
+                   min: "Value must be greater than 0"
+               }
+            }
+        });        
+    });
+        
 });
+
