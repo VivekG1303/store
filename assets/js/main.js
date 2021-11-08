@@ -311,7 +311,59 @@ $(document).ready(function() {
                 }
             }
         });
+    });
 
+    $('.warning').on('click', function() {
+        var value = $('#product-cart-quantity').val();
+
+        var id = $('#qtyCheck').val();
+
+        var action = 'add_to_cart';
+        $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { value:value, id:id, action:action },
+            success: function(response){
+            }
+        });
+    });
+
+    $('.deleteitem').on('click', function() {
+
+        var id = $('.deleteitem').attr('id');
+        var action = 'delete_from_cart';
+        $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { id:id, action:action }
+        });
+    });
+
+    $('.update-item').on('click', function() {
+
+        var id = $(this).parent().siblings('.update-quantity').children('#qtyCheck').val();
+        var value = $(this).parent().siblings('.update-quantity').children('#product-cart-quantity').val();
+        var action = 'update_cart_item';
+        $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { value:value, id:id, action:action }
+        });   
+
+    });
+
+    $('.clear-cart').on('click', function() {
+        var action = 'clear_cart';
+        $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: {action:action},
+            success: function(response) {
+                if(response == 1) {
+                    window.location.reload();
+                }
+            }
+        }); 
     });
 
 });

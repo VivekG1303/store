@@ -13,6 +13,9 @@
         </li>
         <?php } else {?>
         <li class="nav-item">
+        <a class="nav-link" href="product_cart.php"><i class="fas fa-shopping-cart"> <?php if(!empty($_SESSION['cart'][$_SESSION['customer_email']])) { echo count($_SESSION['cart'][$_SESSION['customer_email']]); } else { echo 0;}?></i></a>
+        </li>
+        <li class="nav-item">
         <a class="nav-link" href="signout.php">SignOut</a>
         </li>
         <?php } ?>

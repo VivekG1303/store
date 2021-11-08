@@ -57,7 +57,7 @@ $id = $_GET['pid'];
                 <input type="hidden" name="qtyCheck" id="qtyCheck" value="<?php echo $data['product_id']; ?>">
                 </form>
                 <p id="warning"></p>
-                <a href="product_cart.php?pid=<?php echo $data['product_id']; ?>" id="click"><button class="add-to-cart warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>Add To Cart</button></a>
+                <a href="product_cart.php" id="click"><button class="add-to-cart warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>Add to cart</button></a>
             </div>
         </div>
         <div>

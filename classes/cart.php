@@ -1,0 +1,31 @@
+<?php
+
+class cart {
+
+    public function addToCart($id, $value, $unique)
+    {
+        if(isset($_SESSION['customer_firstname'])) {
+            if(!array_key_exists($id, $_SESSION['cart'])) {
+                $_SESSION['cart'][$unique][$id] = array('id'=>$id, 'qty'=>$value);
+            }
+        }
+    }
+
+    public function deleteCartItem($id, $unique)
+    {
+        unset($_SESSION['cart'][$unique][$id]);
+    }
+
+    public function updateCartItem($id, $value, $unique)
+    {
+        $_SESSION['cart'][$unique][$id] = array('id'=>$id, 'qty'=>$value);
+    }
+
+    public function clearCart($unique)
+    {
+        unset($_SESSION['cart'][$unique]);
+    }
+
+}
+
+?>

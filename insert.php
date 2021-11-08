@@ -298,7 +298,11 @@ if(!empty($_POST)) {
 
                 if ($insert) {
                     $_SESSION['customer_firstname'] = $_POST['customer_firstname'];
+                    $_SESSION['customer_firstname'] = $_POST['customer_lastname'];
                     $_SESSION['customer_password'] = $_POST['customer_password'];
+                    $_SESSION['customer_address'] = $_POST['customer_address'];
+                    $_SESSION['customer_mobilenumber'] = $_POST['customer_mobilenumber'];
+                    $_SESSION['customer_email'] = $_POST['customer_email'];
                     header('Location: index.php');
                 }
 
@@ -312,14 +316,18 @@ if(!empty($_POST)) {
 
         if (!empty($_POST['customer_email'])) {
             
-            $sql = "SELECT customer_firstname, customer_password FROM customer WHERE customer_email='".$_POST['customer_email']."' AND customer_password='".md5($_POST['customer_password'])."'";
+            $sql = "SELECT customer_firstname,customer_lastname, customer_password, customer_address, customer_email, customer_mobilenumber FROM customer WHERE customer_email='".$_POST['customer_email']."' AND customer_password='".md5($_POST['customer_password'])."'";
 
             $select = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($select) > 0) {
                 while ($row = mysqli_fetch_assoc($select)) {
                 $_SESSION['customer_firstname'] = $row['customer_firstname'];
+                $_SESSION['customer_lastname'] = $row['customer_lastname'];
                 $_SESSION['customer_password'] = $row['customer_password'];
+                $_SESSION['customer_address'] = $row['customer_address'];
+                $_SESSION['customer_mobilenumber'] = $row['customer_mobilenumber'];
+                $_SESSION['customer_email'] = $row['customer_email'];
                 header('Location: index.php');
                 }
             } 
@@ -383,6 +391,56 @@ if(!empty($_POST)) {
             }
         }
     }
+
+    //Add To Cart Section
+    if ($_POST['action'] == 'add_to_cart') {
+
+        if (!empty($_POST['id'])) {
+
+            $id = $_POST['id'];
+            $value = $_POST['value'];
+            $unique = $_SESSION['customer_email'];
+
+            $addToCart = new cart();
+            $add = $addToCart->addToCart($id, $value, $unique);
+
+            if ($add) {
+                echo 1;
+            }
+        }
+    }
+
+    if ($_POST['action'] == 'delete_from_cart') {
+
+        if (!empty($_POST['id'])) {
+            $id = $_POST['id'];
+            $unique = $_SESSION['customer_email'];
+
+            $deleteFromCart = new cart();
+            $add = $deleteFromCart->deleteCartItem($id, $unique);
+        }
+    }
+
+    if ($_POST['action'] == 'update_cart_item') {
+        if (!empty($_POST['id'])) {
+            $id = $_POST['id'];
+            $value = $_POST['value'];
+            $unique = $_SESSION['customer_email'];
+
+            $updateCartItem = new cart();
+            $add = $updateCartItem->updateCartItem($id, $value, $unique);
+        }
+    }
+
+    if ($_POST['action'] == 'clear_cart') {
+            $unique = $_SESSION['customer_email'];
+
+            $clearCart = new cart();
+            $clear = $clearCart->clearCart($unique);
+
+            echo 1;
+    }
+    
     
 }
 
