@@ -45,7 +45,7 @@
                                                         <td><a href="product_cart.php" class="text-danger deleteitem" id="<?php echo $data['product_id']; ?>"><i class="fas fa-trash-alt"></i></a></td>
                                                         <td><?php echo $data['product_name']; ?></td>
                                                         <td class="update-quantity"><input type="hidden" id="qtyCheck" value="<?php echo $id; ?>"><input type="number" class="form-control" name="specialNotes" id="product-cart-quantity" value="<?php echo $row['qty']; ?>"></td>
-                                                        <td><a href="product_cart.php" class="text-primary update-item"><i class="fas fa-edit"></i></a></td>
+                                                        <td><button class="warning hidden-button"><a href="product_cart.php" class="text-primary update-item"><i class="fas fa-edit"></i></a></button></td>
                                                         <td>$<?php echo $data['product_price']; ?></td>
                                                         <td class="text-right">$<?php echo $row['qty']*$data['product_price']; ?></td>
                                                     </tr>
@@ -58,24 +58,32 @@
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
+                                            <p class="warning-message"></p>
                                             <a href="index.php" class="btn btn-success my-1">Add More items</a>
-                                            <button type="button" class="btn btn-danger my-1 clear-cart"><i class="fas fa-trash-alt"></i> Cleae Cart</button>
+                                            <button type="button" class="btn btn-danger my-1 clear-cart"><i class="fas fa-trash-alt"></i> Clear Cart</button>
                                         </div>
-                                        <p id="warning"></p>
                                     </div>
                                     <div class="cart-body">
                                         <div class="row">
                                             <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
                                                 <div class="order-note">
-                                                    <form>
-                                                        <div class="form-group">
-                                                            <div class="input-group">
-                                                                <input type="search" class="form-control" placeholder="Coupon Code" aria-label="Search" aria-describedby="button-addonTags">
-                                                                <div class="input-group-append">
-                                                                    <button class="input-group-text" type="submit" id="button-addonTags">Apply</button>
+                                                <div class="form-group">
+                                                            <?php
+                                                            if(isset($_SESSION['coupen'])) {
+                                                            $discount = $_SESSION['coupen'][$_SESSION['customer_email']]['discount'];
+                                                            $name = $_SESSION['coupen'][$_SESSION['customer_email']]['name'];
+                                                            }
+                                                                $coupen = new coupen();
+                                                                $rows = $coupen->detailsCoupen($id = '');
+                                                                foreach($rows as $row) {
+                                                            ?>
+                                                                <div class="coupen-box">
+                                                                    <h4><?php echo $row['coupen_name']; ?></h4>
+                                                                    <button class="input-group-text coupen" data-id="<?php echo $row['coupen_id'];?>">Apply</button>
                                                                 </div>
-                                                            </div>
+                                                            <?php }  ?>
                                                         </div>
+                                                    <form>
                                                         <div class="form-group">
                                                             <label for="specialNotes">Firstname:</label>
                                                             <input type="text" class="form-control" name="specialNotes" id="specialNotes" value="<?php echo $_SESSION['customer_firstname']; ?>">
@@ -104,7 +112,7 @@
                                                         ?>
                                                             <tr>
                                                                 <td>Sub Total :</td>
-                                                                <td>$<?php echo $total; ?></td>
+                                                                <td>$<?php echo $total; $discount_total = $total; ?></td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Shipping :</td>
@@ -114,6 +122,18 @@
                                                                 <td>Tax(18%) :</td>
                                                                 <td>$<?php echo $total*0.18; $total += $total*0.18; ?></td>
                                                             </tr>
+                                                            <?php 
+                                                                if(isset($_SESSION['coupen'][$_SESSION['customer_email']]['discount'])) {
+                                                            ?>
+                                                            <tr>
+                                                                <td>Discount :</td>
+                                                                <td>$<?php echo $discount_total*0.01*$discount; 
+                                                                    $total -= $discount_total*0.01*$discount;?></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="2">You have applied <?php echo $name; ?> to get <?php echo $discount;?>%.</td>
+                                                            </tr>
+                                                            <?php } ?>
                                                             <tr>
                                                                 <td class="f-w-7 font-18"><h4>Amount :</h4></td>
                                                                 <td class="f-w-7 font-18"><h4>$<?php echo $total; ?></h4></td>

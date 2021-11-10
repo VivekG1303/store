@@ -23,6 +23,7 @@ $id = $_GET['id'];
                 $productData = $catProduct->categoryProduct($id);
                 foreach($productData as $line) {
                 $image = unserialize($line['product_image']);
+                if($line['product_status'] == 'enabled') {
             ?>
             <div class="col-sm-3 product-box">
                 <div class="col-sm-12 product-card">
@@ -36,7 +37,7 @@ $id = $_GET['id'];
                     </div>
                 </div>
             </div>
-            <?php } ?>
+            <?php } } ?>
         </div>
     </div>
 </div>

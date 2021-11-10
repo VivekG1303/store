@@ -26,6 +26,11 @@ class cart {
         unset($_SESSION['cart'][$unique]);
     }
 
+    public function coupenCart($discount, $unique, $name)
+    {
+        $_SESSION['coupen'][$unique] = array('discount'=>$discount, 'name'=>$name);;
+    }
+
 }
 
 ?>

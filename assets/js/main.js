@@ -208,6 +208,30 @@ $(document).ready(function() {
 
     });
 
+    $('.product-search').on('click', function() {
+
+        var name = $('#product-search').val();
+
+        var action = 'product_search';
+
+        $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: {action:action, name:name},
+            dataType: 'json',
+            success: function(response) {
+                console.log(response.cid);
+                if(response.pid != null) {
+                    window.location.href="single_product.php?pid="+response.pid;
+                }
+                if(response.cid != null) {
+                    window.location.href="single_category.php?id="+response.cid;
+                }
+            }
+        }); 
+
+    });
+
     //Category Image Update
     $('.carousel-update').on('click', function() {
 
@@ -302,11 +326,11 @@ $(document).ready(function() {
             type: 'POST',
             data: { value:value, id:id, action:action },
             success: function(response){
-                if (response == 'B') {
-                    $('#warning').text("You have entered more value then availability!");
+                if (response == 5) {
+                    $('.warning-message').text("You have entered more value then availability!");
                     $('.warning').attr("disabled", true);
                 } else {
-                    $('#warning').text("");
+                    $('.warning-message').text('');
                     $('.warning').attr("disabled", false);
                 }
             }
@@ -330,7 +354,7 @@ $(document).ready(function() {
 
     $('.deleteitem').on('click', function() {
 
-        var id = $('.deleteitem').attr('id');
+        var id = $(this).attr('id');
         var action = 'delete_from_cart';
         $.ajax({
             url: 'http://localhost/store/insert.php',
@@ -364,6 +388,100 @@ $(document).ready(function() {
                 }
             }
         }); 
+    });
+
+    $('.coupen-update').on('click', function() {
+
+        // Edit ID
+        edit.editid = $(this).data('id');
+
+        // View id
+        var viewid = $(this).data('id');
+
+        var actionid = 'coupen_details';
+            
+            // AJAX Request
+            $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { id:viewid, action:actionid },
+            dataType: 'json',
+            success: function(coupen){
+                    $("#coupenName").val(coupen.coupen_name);
+                    $("#coupenDiscount").val(coupen.coupen_discount);
+                }
+            });    
+
+            $("#coupen-detail-update").on('submit', function(){
+                
+                var editid = edit.editid;
+
+                var formData = new FormData(this);
+
+                formData.append( 'id', editid);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost/store/insert.php',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(response) {
+                        if (response == 1) {
+                            window.location.reload();
+                        }  
+                    }
+
+                });
+            });
+    });
+
+    $('.coupen-delete').on('click', function() {
+        var el = this;
+
+        var deleteid = $(this).data('id');
+
+        var action = 'coupen_delete';
+
+        if (confirm('Are you sure ?') == true) {
+            // AJAX Request
+            $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { id:deleteid, action:action },
+            success: function(response){
+    
+                if(response == 1){
+            // Remove row from HTML Table
+            $(el).closest('tr').css('background','tomato');
+            $(el).closest('tr').fadeOut(800,function(){
+                $(this).remove();
+            });
+                }
+    
+            }
+            });
+        }
+
+    });
+
+    $('.coupen').on('click', function() {
+
+        var id = $(this).data('id');
+
+        var action = 'apply_coupen';
+
+        $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: {id:id, action:action},
+            success: function(response) {
+                window.location.reload();
+            }
+        });
+
     });
 
 });

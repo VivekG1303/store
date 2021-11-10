@@ -15,10 +15,12 @@
             $catProduct = new product();
             $data = $catProduct->categoryProduct($id);
             $i = 0;
+            $c = 0;
         ?>
         <!-- The slideshow -->
         <div class="carousel-inner no-padding">
-            <?php foreach($data as $line) { 
+            <?php foreach($data as $line) {
+                if($line['product_status'] == 'enabled') { 
                 if($i<8) { 
                 $image = unserialize($line['product_image']);
                     if($i == 0) {?> <div class="carousel-item active"> <?php } 
@@ -36,9 +38,9 @@
                 </div>
             </div>
                 <?php if($i == 3) {?> </div> <?php }
-                if($i == count($data) - 1) {?> </div> <?php }
+                if($i == count($data) - 1 - $c) {?> </div> <?php }
                     $i++; }
-                } ?>
+                } else { $c++; } } ?>
             
             <a class="carousel-control-prev" href="#demo<?php echo $row['category_id']; ?>" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

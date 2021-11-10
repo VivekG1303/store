@@ -294,10 +294,36 @@ class product extends database {
         $row = mysqli_fetch_assoc($select);
 
         if($value<$row['product_quantity']) {
-            return 'A';
+            return 4;
         } else {
-            return 'B';
+            return 5;
         }
+    }
+
+    public function searchProduct($name)
+    {
+        
+
+        $sql = "SELECT product_id FROM product WHERE product_name='".$name."'";
+
+        $select = mysqli_query($this->conn, $sql);
+
+        $row = mysqli_fetch_assoc($select);
+
+        $pid = $row['product_id'];
+
+        $sql1 = "SELECT category_id FROM category WHERE category_name='".$name."'";
+
+        $select1 = mysqli_query($this->conn, $sql1);
+
+        $row1 = mysqli_fetch_assoc($select1);
+
+        $cid = $row1['category_id'];
+
+        $data = array('pid'=>$pid, 'cid'=>$cid);
+
+        return $data;
+
     }
 
 }

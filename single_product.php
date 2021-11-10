@@ -52,11 +52,9 @@ $id = $_GET['pid'];
 				<p class="product-description"><?php echo $data['product_description']; ?></p>
 				<h4 class="price">current price: <span>$<?php echo $data['product_price']; ?></span></h4>
                 <p class="product-description">SKU: <?php echo $data['product_sku']; ?></p>
-                <form id="qtyForm">
                 <lable>Qty: </lable><input type="number" name="product_cart_quantity" min=1 id="product-cart-quantity" value="1">
                 <input type="hidden" name="qtyCheck" id="qtyCheck" value="<?php echo $data['product_id']; ?>">
-                </form>
-                <p id="warning"></p>
+                <p class="warning-message"></p>
                 <a href="product_cart.php" id="click"><button class="add-to-cart warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>Add to cart</button></a>
             </div>
         </div>
