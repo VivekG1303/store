@@ -7,7 +7,8 @@ $(document).ready(function() {
 var edit = {};
 $(document).ready(function() {
 
-    //Category Image Update
+//Category Functionality
+    //Category Update
     $('.category-update').on('click', function() {
 
         // Edit ID
@@ -60,6 +61,7 @@ $(document).ready(function() {
             });
     });
 
+    // Category Delete
     $('.category-delete').on('click', function() {
         var el = this;
 
@@ -89,15 +91,12 @@ $(document).ready(function() {
 
     });
 
-    //Product Image Update
+//Product Functionality
+    //Product Update
     $('.product-update').on('click', function() {
 
-        // Edit ID
         edit.editid = $(this).data('id');
-
-        // View id
         var viewid = $(this).data('id');
-
         var actionid = 'product_details';
             
             // AJAX Request
@@ -179,11 +178,10 @@ $(document).ready(function() {
             });
     });
 
+    //Product Delete
     $('.product-delete').on('click', function() {
         var el = this;
-
         var deleteid = $(this).data('id');
-
         var action = 'product_delete';
 
         if (confirm('Are you sure ?') == true) {
@@ -205,9 +203,9 @@ $(document).ready(function() {
             }
             });
         }
-
     });
 
+    //Product Search
     $('.product-search').on('click', function() {
 
         var name = $('#product-search').val();
@@ -232,15 +230,11 @@ $(document).ready(function() {
 
     });
 
-    //Category Image Update
+//Carousel Functionality
+    //Caroyusel Update
     $('.carousel-update').on('click', function() {
-
-        // Edit ID
         edit.editid = $(this).data('id');
-
-        // View id
         var viewid = $(this).data('id');
-
         var actionid = 'carousel_details';
             
             // AJAX Request
@@ -284,11 +278,10 @@ $(document).ready(function() {
             });
     });
 
+    //Carousel Delete
     $('.carousel-delete').on('click', function() {
         var el = this;
-
         var deleteid = $(this).data('id');
-
         var action = 'carousel_delete';
 
         if (confirm('Are you sure ?') == true) {
@@ -313,6 +306,8 @@ $(document).ready(function() {
 
     });
 
+//Frontend Functionality
+    //Cart quantity Check
     $('#product-cart-quantity').on('change paste keyup', function() {
 
         var value = $(this).val();
@@ -337,7 +332,34 @@ $(document).ready(function() {
         });
     });
 
-    $('.warning').on('click', function() {
+    $('.product-cart-quantity1').on('change paste keyup', function() {
+
+        var value = $(this).val();
+
+        var id = $('#qtyCheck').val();
+
+        var action = 'product_quantity_check';
+
+        $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { value:value, id:id, action:action },
+            success: function(response){
+                if (response == 5) {
+                    $('.warning-message1').text("You have entered more value then availability!");
+                    $('.remove-link').removeAttr("href");
+                    $('.warning-disable').attr("disabled", true);
+                } else {
+                    $('.warning-message1').text('');
+                    $('.remove-link').attr("href", "product_cart.php");
+                    $('.warning-disable').attr("disabled", false);
+                }
+            }
+        });
+    });
+
+    //Cart Warning
+    $('.add-to-cart').on('click', function() {
         var value = $('#product-cart-quantity').val();
 
         var id = $('#qtyCheck').val();
@@ -352,6 +374,7 @@ $(document).ready(function() {
         });
     });
 
+    //Cart single item delete
     $('.deleteitem').on('click', function() {
 
         var id = $(this).attr('id');
@@ -363,10 +386,11 @@ $(document).ready(function() {
         });
     });
 
+    //Cart item quantity update
     $('.update-item').on('click', function() {
 
         var id = $(this).parent().siblings('.update-quantity').children('#qtyCheck').val();
-        var value = $(this).parent().siblings('.update-quantity').children('#product-cart-quantity').val();
+        var value = $(this).parent().siblings('.update-quantity').children('#product-cart-quantity1').val();
         var action = 'update_cart_item';
         $.ajax({
             url: 'http://localhost/store/insert.php',
@@ -376,6 +400,7 @@ $(document).ready(function() {
 
     });
 
+    //Clear cart
     $('.clear-cart').on('click', function() {
         var action = 'clear_cart';
         $.ajax({
@@ -390,14 +415,11 @@ $(document).ready(function() {
         }); 
     });
 
+//Coupen Functionality
+    //Coupen update
     $('.coupen-update').on('click', function() {
-
-        // Edit ID
         edit.editid = $(this).data('id');
-
-        // View id
         var viewid = $(this).data('id');
-
         var actionid = 'coupen_details';
             
             // AJAX Request
@@ -414,10 +436,8 @@ $(document).ready(function() {
 
             $("#coupen-detail-update").on('submit', function(){
                 
-                var editid = edit.editid;
-
+                var editid = edit.editid
                 var formData = new FormData(this);
-
                 formData.append( 'id', editid);
 
                 $.ajax({
@@ -438,11 +458,10 @@ $(document).ready(function() {
             });
     });
 
+    //Coupen Delete
     $('.coupen-delete').on('click', function() {
         var el = this;
-
         var deleteid = $(this).data('id');
-
         var action = 'coupen_delete';
 
         if (confirm('Are you sure ?') == true) {
@@ -467,10 +486,9 @@ $(document).ready(function() {
 
     });
 
+    //Coupen Apply
     $('.coupen').on('click', function() {
-
         var id = $(this).data('id');
-
         var action = 'apply_coupen';
 
         $.ajax({
@@ -481,6 +499,40 @@ $(document).ready(function() {
                 window.location.reload();
             }
         });
+    });
+
+    //Coupen Remove
+    $('.remove').on('click', function() {
+        var action = 'remove_coupen';
+
+        $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: {action:action},
+            success: function() {
+                window.location.reload();
+            }
+        });
+    });
+
+    $('.pagination-1').on('click', function() {
+
+        var page = $(this).data('id');
+        var id = $('#hidden-id').val();
+        var order = $('#order').val();
+
+        window.location.href = 'single_category.php?id='+ id +'&page=' + page +'&order=' + order;
+
+    });
+
+    $('#order').on('change', function() {
+        var page = $('#hidden-page-id').val();
+        var id = $('#hidden-id').val();
+        var order = $('#order').val();
+
+        window.location = 'single_category.php?id='+ id +'&page=' + page +'&order=' + order;
+
+        $("order").val(order);
 
     });
 

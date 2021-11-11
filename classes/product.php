@@ -256,6 +256,39 @@ class product extends database {
         }
     }
 
+    public function deleteProduct($id){
+
+        $sql = "SELECT product_image, product_video FROM product WHERE product_id=". $id;
+
+        $select = mysqli_query($this->conn, $sql);
+
+        while($row = mysqli_fetch_assoc($select)) {
+
+            $image = $row['product_image'];
+            $video = $row['product_video'];
+
+        }
+
+        $image_array = unserialize($image);
+
+        for($i=0; $i<count($image_array); $i++) {
+
+            unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_image/".$image_array[$i]);
+
+        }
+
+        unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_video/".$video);
+
+        $sql = "DELETE FROM product WHERE product_id=".$id;
+
+        $delete = mysqli_query($this->conn, $sql);
+
+        if($delete) {
+            return true;
+        }
+
+    }
+
     public function categoryProduct($id)
     {
 
@@ -323,6 +356,61 @@ class product extends database {
         $data = array('pid'=>$pid, 'cid'=>$cid);
 
         return $data;
+
+    }
+
+    public function countProduct($id)
+    {
+        $sql = "SELECT * FROM product WHERE product_category LIKE '%". $id ." %' OR product_category LIKE '%". $id ."'";
+
+        $select = mysqli_query($this->conn, $sql);
+
+        $row = mysqli_num_rows($select);
+        $limit = 20;
+        $number = ceil($row/$limit);
+
+        return $number;
+    }
+
+    public function pageProduct($id, $page, $order)
+    {
+        if($order == '') {
+            $limit=20;
+            if($page == 1) {
+                $number = 0;
+            } else {
+                $number = $limit*($page-1);
+            }
+            $sql = "SELECT * FROM product WHERE product_category LIKE '%". $id ." %' OR product_category LIKE '%". $id ."'  LIMIT ". $number .",". $limit;
+    
+            $select = mysqli_query($this->conn, $sql);
+    
+            $data = array();
+            while ($row = mysqli_fetch_assoc($select)) {
+                $data[] = $row;
+            }
+           
+            return $data;
+        } else {
+
+            $limit=20;
+            if($page == 1) {
+                $number = 0;
+            } else {
+                $number = $limit*($page-1);
+            }
+            $sql = "SELECT * FROM product WHERE product_category LIKE '%". $id ." %' OR product_category LIKE '%". $id ."' ORDER BY product_price ".$order." LIMIT ". $number .",". $limit;
+    
+            $select = mysqli_query($this->conn, $sql);
+    
+            $data = array();
+            while ($row = mysqli_fetch_assoc($select)) {
+                $data[] = $row;
+            }
+           
+            return $data;
+
+        }
 
     }
 

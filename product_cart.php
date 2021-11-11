@@ -44,8 +44,8 @@
                                                         <th scope="row"><?php echo $i; ?></th>
                                                         <td><a href="product_cart.php" class="text-danger deleteitem" id="<?php echo $data['product_id']; ?>"><i class="fas fa-trash-alt"></i></a></td>
                                                         <td><?php echo $data['product_name']; ?></td>
-                                                        <td class="update-quantity"><input type="hidden" id="qtyCheck" value="<?php echo $id; ?>"><input type="number" class="form-control" name="specialNotes" id="product-cart-quantity" value="<?php echo $row['qty']; ?>"></td>
-                                                        <td><button class="warning hidden-button"><a href="product_cart.php" class="text-primary update-item"><i class="fas fa-edit"></i></a></button></td>
+                                                        <td class="update-quantity"><input type="hidden" id="qtyCheck" value="<?php echo $id; ?>"><input type="number" class="form-control product-cart-quantity1" name="specialNotes" id="product-cart-quantity1" value="<?php echo $row['qty']; ?>"></td>
+                                                        <td><button class="update-item warning-disable hidden-button"><a class="text-primary remove-link"><i class="fas fa-edit"></i></a></button></td>
                                                         <td>$<?php echo $data['product_price']; ?></td>
                                                         <td class="text-right">$<?php echo $row['qty']*$data['product_price']; ?></td>
                                                     </tr>
@@ -58,7 +58,7 @@
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
-                                            <p class="warning-message"></p>
+                                            <p class="warning-message1"></p>
                                             <a href="index.php" class="btn btn-success my-1">Add More items</a>
                                             <button type="button" class="btn btn-danger my-1 clear-cart"><i class="fas fa-trash-alt"></i> Clear Cart</button>
                                         </div>
@@ -79,7 +79,7 @@
                                                             ?>
                                                                 <div class="coupen-box">
                                                                     <h4><?php echo $row['coupen_name']; ?></h4>
-                                                                    <button class="input-group-text coupen" data-id="<?php echo $row['coupen_id'];?>">Apply</button>
+                                                                    <button class="input-group-text <?php if(isset($_SESSION['coupen'])) { if($row['coupen_name']==$name){?>remove<?php } else {?>coupen<?php } }else {?>coupen<?php }?>" data-id="<?php echo $row['coupen_id'];?>"><?php if(isset($_SESSION['coupen'])) { if($row['coupen_name']==$name){?>Remove<?php } else {?>Apply<?php } } else {?>Apply<?php } ?></button>
                                                                 </div>
                                                             <?php }  ?>
                                                         </div>

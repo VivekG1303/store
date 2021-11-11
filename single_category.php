@@ -1,5 +1,15 @@
 <?php 
 $id = $_GET['id'];
+if(!isset($_GET['page'])) {
+    $page = 1;
+} else {
+    $page = $_GET['page'];
+}
+if(!isset($_GET['order'])) {
+    $order = '';
+} else {
+    $order = $_GET['order'];
+}
 ?>
 <?php include_once 'header.php'; ?>
 <?php include_once 'template-parts/navbar.php'; ?>
@@ -10,17 +20,26 @@ $id = $_GET['id'];
     ?>
     <div class="container-fluid category-banner no-padding">
         <img src="upload/category_image/<?php echo $data['category_image']; ?>">
-    </div>
+        <input type="hidden" id="hidden-id"  value="<?php echo $data['category_id']; ?>">
+        <input type="hidden" id="hidden-page-id"  value="<?php echo $page; ?>">
+    </div>  
     <div class="container">
         <div class="category-product">
         <h1><?php echo $data['category_name']; ?></h1>
+        <div class="order">
+            <lable>Sort By: </lable>
+            <select name="order" id="order">
+            <option value=""></option>
+            <option value="ASC" <?php if($order == 'ASC') { ?>selected<?php } ?>>Order By Price Increase</option>
+            <option value="DESC" <?php if($order == 'DESC') { ?>selected<?php } ?>>Order By Price Decrease</option>
+            </select>
         </div>
+        </div>
+        <div  id="refresh">
         <div class="row">
             <?php
-                $id = $data['category_id'];
-
                 $catProduct = new product();
-                $productData = $catProduct->categoryProduct($id);
+                $productData = $catProduct->pageProduct($id, $page, $order);
                 foreach($productData as $line) {
                 $image = unserialize($line['product_image']);
                 if($line['product_status'] == 'enabled') {
@@ -39,6 +58,17 @@ $id = $_GET['id'];
             </div>
             <?php } } ?>
         </div>
+        </div>
+    </div>
+    <div class="container">
+    <nav aria-label="...">
+        <ul class="pagination pagination-lg">
+        <?php  $productNumber = $catProduct->countProduct($id); 
+        for($i=1; $i<=$productNumber; $i++) {?>
+            <li class="page-item"><button class="page-link pagination-1" data-id=<?php echo $i; ?>><?php echo $i; ?></a></li>
+        <?php } ?>
+        </ul>
+        </nav>
     </div>
 </div>
 <?php include_once 'footer.php'; ?>

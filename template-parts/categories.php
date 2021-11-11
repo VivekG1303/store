@@ -6,7 +6,7 @@
         foreach($rows as $row) {
     ?>
     <div class="category">
-        <div id="demo<?php echo $row['category_id']; ?>" class=" container carousel slide" data-ride="carousel">
+        <div id="demo<?php echo $row['category_id']; ?>" class="container carousel slide" data-ride="carousel" data-interval="6000">
         <a href="single_category.php?id=<?php echo $row['category_id']; ?>" class="category-display"><h3><?php echo $row['category_name']; ?></h3></a>
         
         <?php

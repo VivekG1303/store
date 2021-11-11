@@ -104,32 +104,14 @@ if ($_POST['action'] == 'product_delete') {
 
     if (!empty($_POST['id'])) {
 
-        $sql = "SELECT product_image, product_video FROM product WHERE product_id=". $_POST['id'];
+        $id = $_POST['id'];
 
-        $select = mysqli_query($conn, $sql);
+        $product = new product();
+        $delete = $product->deleteProduct($id);
 
-        while($row = mysqli_fetch_assoc($select)) {
-
-            $image = $row['product_image'];
-            $video = $row['product_video'];
-
+        if ($delete) {
+            echo 1;
         }
-
-        $image_array = unserialize($image);
-
-        for($i=0; $i<count($image_array); $i++) {
-
-            unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_image/".$image_array[$i]);
-
-        }
-
-        unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/product_video/".$video);
-
-        $sql = "DELETE FROM product WHERE product_id=".$_POST['id'];
-
-        $delete = mysqli_query($conn, $sql);
-
-        echo 1;
     }
 }
 

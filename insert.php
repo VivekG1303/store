@@ -1,6 +1,5 @@
 <?php
 
-include_once 'dbconn.php';
 include_once 'classes/inc/autoload.php';
 session_start();
 if(!empty($_POST)) {

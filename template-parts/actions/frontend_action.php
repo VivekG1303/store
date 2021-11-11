@@ -122,4 +122,12 @@ if ($_POST['action'] == 'apply_coupen') {
 
 }
 
+if ($_POST['action'] == 'remove_coupen') {
+
+    $unique = $_SESSION['customer_email'];
+    $coupenCart = new cart();
+    $apply = $coupenCart->removeCoupenCart($unique);
+
+}
+
 ?>

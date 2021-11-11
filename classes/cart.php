@@ -23,12 +23,18 @@ class cart {
 
     public function clearCart($unique)
     {
+        unset($_SESSION['coupen']);
         unset($_SESSION['cart'][$unique]);
     }
 
     public function coupenCart($discount, $unique, $name)
     {
         $_SESSION['coupen'][$unique] = array('discount'=>$discount, 'name'=>$name);;
+    }
+
+    public function removeCoupenCart($unique)
+    {
+        unset($_SESSION['coupen']);
     }
 
 }

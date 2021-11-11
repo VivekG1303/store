@@ -32,10 +32,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $sql = "SELECT * FROM customer";
-                            $select = mysqli_query($conn, $sql);
-                                if(mysqli_num_rows($select) > 0) {
-                                    while($row = mysqli_fetch_assoc($select)) {
+                            <?php 
+                                $customer = new login();
+                                $rows = $customer->detailsCustomer();
+                                foreach($rows as $row) {
                             ?>
                             <tr>
                                 <td><?php echo $row['customer_id']; ?></td>
@@ -47,8 +47,7 @@
                                 <td><?php echo $row['created_at']; ?></td>
                                 <td><?php echo $row['updated_at']; ?></td>
                             </tr>
-                            <?php       
-                                }
+                            <?php   
                             }?>
                         </tbody>
                     </table>
