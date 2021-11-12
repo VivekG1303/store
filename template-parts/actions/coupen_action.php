@@ -22,9 +22,10 @@ if ($_POST['action'] == 'coupen_details') {
     if (!empty($_POST['id'])) {
 
         $id = $_POST['id'];
+        $name = 'Name';
 
         $coupen = new coupen();
-        $data = $coupen->detailsCoupen($id);
+        $data = $coupen->detailsCoupen($id, $name);
 
         echo json_encode($data);
 

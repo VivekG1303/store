@@ -18,13 +18,12 @@ if ($_POST['action'] == 'category_register') {
             
                 $files = $_FILES;
                 $category_name = $_POST['category_name'];
-                $category_image = $fileName;
                 $category_description = $_POST['category_description'];
                 $created_at = date("d-m-Y");
 
                 $insert = $category->insertCategory($files, $category_name, $category_description, $created_at);
                 if ($insert) {
-                $message = "New Category Added";
+                $success = "New Category Added";
                 }
 
 

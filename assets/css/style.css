@@ -159,14 +159,14 @@
     height:auto;
 }
 body .carousel-indicators li{
-    background-color: #eb8b32;
+    background-color: #303030;
 }
 body .carousel-indicators{
     bottom: 0;
 }
 body .carousel-control-prev-icon,
 body .carousel-control-next-icon{
-    background-color: #eb8b32;
+    background-color: #303030;
 }
 body .no-padding{
     padding-left: 0;
@@ -176,7 +176,8 @@ body .no-padding{
 /* Carousel Product */
 .productHome {
     padding: 10px;
-    border: 1px solid #eb8b32;
+    border: 2px solid #eb8b32;
+    border-radius: 10px;
 }
 
 .category {
@@ -212,7 +213,8 @@ body .no-padding{
 }
 
 .product-card {
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 10px;
+    box-shadow: rgba(67, 71, 85, 0.45) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
     padding: 10px;
 }
 
@@ -350,4 +352,41 @@ body{
 
 .coupen-box {
     margin: 5px;
+}
+
+.customer-name {
+    margin: 8px 5px;
+    color: #ffffff;
+}
+
+#product-search {
+    width: 150px;
+    margin-right: 5px;
+}
+
+.category-header {
+    margin-top: 20px;
+}
+
+#coupen-name {
+    width: 150px;
+    margin-right: 10px;
+}
+
+.coupen-input {
+    display: flex;
+    margin: 10px;
+}
+
+.coupen-input div {
+    width: 100%;
+}
+
+.coupen-input h4 {
+    margin-right: 10px;
+}
+
+.search-navbar {
+    color: #ffffff;
+    padding: 10px 10px 0;
 }

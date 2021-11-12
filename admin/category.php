@@ -12,6 +12,8 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                 Add New Category
                 </button>
+                <p id="warning"><?php echo isset($message) ? $message : '';?></p>
+                <p id="success" class="text-success"><?php echo isset($success) ? $success : '';?></p>
                 
                 <!-- Display Category -->
                 <div class="container">

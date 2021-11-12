@@ -5,12 +5,14 @@ if(isset($_SESSION['admin_userid']) && isset($_SESSION['admin_password'])) {
 include_once 'sidebar.php'; ?>
 
     <div class="col-sm-10" id="main">
-                <h1>coupen</h1>
+                <h1>Coupen</h1>
 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                Add New coupen
+                Add New Coupen
                 </button>
+                <p id="warning"><?php echo isset($message) ? $message : '';?></p>
+                <p id="success"><?php echo isset($success) ? $success : '';?></p>
                 
                 <!-- Display coupen -->
                 <div class="container">
@@ -27,7 +29,7 @@ include_once 'sidebar.php'; ?>
                             <tbody>
                                 <?php 
                                         $coupen = new coupen();
-                                        $rows = $coupen->detailsCoupen($id = '');
+                                        $rows = $coupen->detailsCoupen($id = '', $name = '');
                                         foreach($rows as $row) {
                                 ?>
                                 <tr>

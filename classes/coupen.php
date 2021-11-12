@@ -45,11 +45,22 @@ class coupen extends database {
 
     }
 
-    public function detailsCoupen($id = '')
+    public function detailsCoupen($id, $name)
     {
-        if(!empty($id)) {
-
+        if(!empty($id) && $name == 'Name') {
+            
             $sql = "SELECT * FROM coupen WHERE coupen_id=".$id;
+
+            $select = mysqli_query($this->conn, $sql);
+
+            while ($row = mysqli_fetch_assoc($select)) {
+                $data = $row;
+            }
+            return $data;
+
+        } elseif(!empty($id)) {
+
+            $sql = "SELECT * FROM coupen WHERE coupen_name='".$id."'";
 
             $select = mysqli_query($this->conn, $sql);
 

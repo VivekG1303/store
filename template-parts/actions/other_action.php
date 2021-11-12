@@ -13,7 +13,7 @@ if ($_POST['action'] == 'admin_login') {
     
         } else {
     
-            $message = 'Please enter the valid details2';
+            $message = 'Please enter the valid details';
     
         }
     }
@@ -40,4 +40,54 @@ if ($_POST['action'] == 'customer_signin') {
 
     }
 }
+
+if ($_POST['action'] == 'customer_details') {
+
+    if (!empty($_POST['id'])) {
+
+        $id = $_POST['id'];
+
+        $customer = new login();
+        $data = $customer->detailsCustomer($id);
+
+        echo json_encode($data);
+
+    }
+}
+
+if ($_POST['action'] == 'customer_update') {
+
+    if (!empty($_POST['id'])) {
+        $id = $_POST['id'];
+        $customer_firstname = $_POST['customer_firstname'];
+        $customer_lastname = $_POST['customer_lastname'];
+        $customer_email = $_POST['customer_email'];
+        $customer_mobilenumber = $_POST['customer_mobilenumber'];
+        $customer_address = $_POST['customer_address'];
+            
+        $customer = new login();
+        $update = $customer->updateCustomer($id, $customer_firstname, $customer_lastname, $customer_email, $customer_mobilenumber, $customer_address);
+
+        if ($update) {
+            echo 1;
+        }
+
+    }
+}
+
+if ($_POST['action'] == 'customer_delete') {
+
+    if (!empty($_POST['id'])) {
+
+        $id = $_POST['id'];
+
+        $customer = new login();
+        $delete = $customer->deleteCustomer($id);
+
+        if ($delete) {
+            echo 1;
+        }
+    }
+}
+
 ?>     

@@ -11,7 +11,7 @@ class category extends database {
     {
         $sql = "SELECT category_name FROM category WHERE category_name='".$category_name."'";
 
-        $select = mysqli_query($this->conn, $sql);
+        $select = mysqli_query($this->getConnection(), $sql);
 
         if (mysqli_num_rows($select) > 0) {
             return true;
@@ -84,7 +84,7 @@ class category extends database {
                     // Insert image file name into database
                     $sql = "UPDATE category SET category_image='".$fileName."', updated_at='".$updated_at."' WHERE category_id=".$_POST['id'];
 
-                    $update = mysqli_query($this->conn, $sql);
+                    $update = mysqli_query($this->getConnection(), $sql);
 
                 }
             }

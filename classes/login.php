@@ -50,13 +50,15 @@ class login extends database {
             $insert = mysqli_query($this->conn, $sql);
 
             if ($insert) {
+                if($_POST['status'] !=='backend') {
                 $_SESSION['customer_firstname'] = $post['customer_firstname'];
-                $_SESSION['customer_firstname'] = $post['customer_lastname'];
+                $_SESSION['customer_lastname'] = $post['customer_lastname'];
                 $_SESSION['customer_password'] = $post['customer_password'];
                 $_SESSION['customer_address'] = $post['customer_address'];
                 $_SESSION['customer_mobilenumber'] = $post['customer_mobilenumber'];
                 $_SESSION['customer_email'] = $post['customer_email'];
-                header('Location: index.php');
+                    header('Location: index.php');
+                }
             }
 
             $message = "New Customer Added";
@@ -85,17 +87,54 @@ class login extends database {
         }
     }
 
-    public function detailsCustomer()
+    public function detailsCustomer($id = '')
     {
-        $sql = "SELECT * FROM customer";
+        if(!empty($id)) {
+            $sql = "SELECT * FROM customer WHERE customer_id=".$id;
 
-        $select = mysqli_query($this->conn, $sql);
+            $select = mysqli_query($this->conn, $sql);
 
-        $data = array();
-        while ($row = mysqli_fetch_assoc($select)) {
-            $data[] = $row;
+            while ($row = mysqli_fetch_assoc($select)) {
+                $data = $row;
+            }
+            return $data;
+
+        } else {
+            $sql = "SELECT * FROM customer";
+
+            $select = mysqli_query($this->conn, $sql);
+
+            $data = array();
+            while ($row = mysqli_fetch_assoc($select)) {
+                $data[] = $row;
+            }
+            return $data;
+        }   
+    }
+
+    public function updateCustomer($id, $customer_firstname, $customer_lastname, $customer_email, $customer_mobilenumber, $customer_address)
+    {
+        $updated_at = date('d-m-Y');
+        $sql = "UPDATE customer SET customer_firstname='".$customer_firstname."', customer_lastname='".$customer_lastname."', customer_email='".$customer_email."', customer_mobilenumber='".$customer_mobilenumber."', customer_address='".$customer_address."', updated_at='".$updated_at."' WHERE customer_id=".$id;
+
+        $update = mysqli_query($this->conn, $sql);
+
+        if ($update) {
+            return true;
         }
-        return $data;
+    }
+
+    public function deleteCustomer($id)
+    {
+
+        $sql = "DELETE FROM customer WHERE customer_id=".$id;
+
+        $delete = mysqli_query($this->conn, $sql);
+
+        if ($delete) {
+            return true;
+        }
+
     }
 
 }

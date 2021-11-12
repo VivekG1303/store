@@ -109,10 +109,11 @@ if ($_POST['action'] == 'clear_cart') {
 if ($_POST['action'] == 'apply_coupen') {
 
     $id = $_POST['id'];
+    $name = 'Try';
     $unique = $_SESSION['customer_email'];
 
     $coupen = new coupen();
-    $data = $coupen->detailsCoupen($id);
+    $data = $coupen->detailsCoupen($id, $name);
 
     $discount = $data['coupen_discount'];
     $name = $data['coupen_name'];

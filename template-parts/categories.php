@@ -1,5 +1,7 @@
 <div>
+    <div class="container category-header">
     <h1>Categories</h1>
+    </div>
     <?php 
         $category = new category();
         $rows = $category->detailsCategory($id = '');

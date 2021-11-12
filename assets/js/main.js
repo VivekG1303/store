@@ -218,12 +218,15 @@ $(document).ready(function() {
             data: {action:action, name:name},
             dataType: 'json',
             success: function(response) {
-                console.log(response.cid);
                 if(response.pid != null) {
                     window.location.href="single_product.php?pid="+response.pid;
-                }
-                if(response.cid != null) {
+                } else if(response.cid != null) {
                     window.location.href="single_category.php?id="+response.cid;
+                } else if (response.pid == null && response.pid == null) {
+                    $('.search-navbar').append("<div id='no-result-message'><h6>No result found!</h6></div>");
+                    setTimeout(function() {
+                    $('#no-result-message').remove();
+                    }, 3000);
                 }
             }
         }); 
@@ -322,7 +325,7 @@ $(document).ready(function() {
             data: { value:value, id:id, action:action },
             success: function(response){
                 if (response == 5) {
-                    $('.warning-message').text("You have entered more value then availability!");
+                    $('.warning-message').text("You have entered the value more than availability!");
                     $('.warning').attr("disabled", true);
                 } else {
                     $('.warning-message').text('');
@@ -346,7 +349,7 @@ $(document).ready(function() {
             data: { value:value, id:id, action:action },
             success: function(response){
                 if (response == 5) {
-                    $('.warning-message1').text("You have entered more value then availability!");
+                    $('.warning-message1').text("You have entered the value more than availability!");
                     $('.remove-link').removeAttr("href");
                     $('.warning-disable').attr("disabled", true);
                 } else {
@@ -488,7 +491,7 @@ $(document).ready(function() {
 
     //Coupen Apply
     $('.coupen').on('click', function() {
-        var id = $(this).data('id');
+        var id = $('#coupen-name').val();
         var action = 'apply_coupen';
 
         $.ajax({
@@ -516,23 +519,88 @@ $(document).ready(function() {
     });
 
     $('.pagination-1').on('click', function() {
-
         var page = $(this).data('id');
         var id = $('#hidden-id').val();
         var order = $('#order').val();
-
         window.location.href = 'single_category.php?id='+ id +'&page=' + page +'&order=' + order;
-
     });
 
     $('#order').on('change', function() {
         var page = $('#hidden-page-id').val();
         var id = $('#hidden-id').val();
         var order = $('#order').val();
-
         window.location = 'single_category.php?id='+ id +'&page=' + page +'&order=' + order;
-
         $("order").val(order);
+    });
+
+    //customer update
+    $('.customer-update').on('click', function() {
+        edit.editid = $(this).data('id');
+        var viewid = $(this).data('id');
+        var actionid = 'customer_details';
+            
+            // AJAX Request
+            $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { id:viewid, action:actionid },
+            dataType: 'json',
+            success: function(customer){
+                    $("#customerFirstname").val(customer.customer_firstname);
+                    $("#customerLastname").val(customer.customer_lastname);
+                    $("#customerEmail").val(customer.customer_email);
+                    $("#customerMobilenumber").val(customer.customer_mobilenumber);
+                    $("#customerAddress").val(customer.customer_address);
+                }
+            });    
+
+            $("#customer-detail-update").on('submit', function(){
+                
+                var editid = edit.editid
+                var formData = new FormData(this);
+                formData.append( 'id', editid);
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost/store/insert.php',
+                    data: formData,
+                    dataType: 'json',
+                    contentType: false,
+                    cache: false,
+                    processData:false,
+                    success: function(response) {
+                        if (response == 1) {
+                            window.location.reload();
+                        }  
+                    }
+
+                });
+            });
+    });
+
+    //Customer Delete
+    $('.customer-delete').on('click', function() {
+        var el = this;
+        var deleteid = $(this).data('id');
+        var action = 'customer_delete';
+
+        if (confirm('Are you sure ?') == true) {
+            // AJAX Request
+            $.ajax({
+            url: 'http://localhost/store/insert.php',
+            type: 'POST',
+            data: { id:deleteid, action:action },
+            success: function(response){
+                if(response == 1){
+                    // Remove row from HTML Table
+                    $(el).closest('tr').css('background','tomato');
+                    $(el).closest('tr').fadeOut(800,function(){
+                        $(this).remove();
+                    });
+                }
+            }
+            });
+        }
 
     });
 

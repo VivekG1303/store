@@ -391,6 +391,30 @@ class product extends database {
             }
            
             return $data;
+        } elseif($order == 'NAME_ASC' || $order == 'NAME_DESC') {
+
+            $limit=20;
+            if($page == 1) {
+                $number = 0;
+            } else {
+                $number = $limit*($page-1);
+            }
+
+            if($order == 'NAME_ASC' ) {
+                $sql = "SELECT * FROM product WHERE product_category LIKE '%". $id ." %' OR product_category LIKE '%". $id ."' ORDER BY product_name ASC LIMIT ". $number .",". $limit;
+            } else {
+                $sql = "SELECT * FROM product WHERE product_category LIKE '%". $id ." %' OR product_category LIKE '%". $id ."' ORDER BY product_name DESC LIMIT ". $number .",". $limit;
+            }
+    
+            $select = mysqli_query($this->conn, $sql);
+    
+            $data = array();
+            while ($row = mysqli_fetch_assoc($select)) {
+                $data[] = $row;
+            }
+           
+            return $data;
+
         } else {
 
             $limit=20;

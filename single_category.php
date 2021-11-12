@@ -30,8 +30,10 @@ if(!isset($_GET['order'])) {
             <lable>Sort By: </lable>
             <select name="order" id="order">
             <option value=""></option>
-            <option value="ASC" <?php if($order == 'ASC') { ?>selected<?php } ?>>Order By Price Increase</option>
-            <option value="DESC" <?php if($order == 'DESC') { ?>selected<?php } ?>>Order By Price Decrease</option>
+            <option value="ASC" <?php if($order == 'ASC') { ?>selected<?php } ?>>Price Low to High</option>
+            <option value="DESC" <?php if($order == 'DESC') { ?>selected<?php } ?>>Price High to Low</option>
+            <option value="NAME_ASC" <?php if($order == 'NAME_ASC') { ?>selected<?php } ?>>Name Ascending</option>
+            <option value="NAME_DESC" <?php if($order == 'NAME_DESC') { ?>selected<?php } ?>>Name Descending</option>
             </select>
         </div>
         </div>

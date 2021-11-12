@@ -67,22 +67,27 @@
                                         <div class="row">
                                             <div class="col-md-12 order-2 order-lg-1 col-lg-5 col-xl-6">
                                                 <div class="order-note">
-                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                    <?php if(!empty($_SESSION['cart'][$_SESSION['customer_email']])) { ?>
+                                                        <h3>Apply Coupen: </h3>
+                                                        <div class="coupen-input">
+                                                        <input type="search" class="form-control rounded" id="coupen-name" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                                                        <button class="coupen btn btn-info">Apply</button>
+                                                        </div>
                                                             <?php
                                                             if(isset($_SESSION['coupen'])) {
                                                             $discount = $_SESSION['coupen'][$_SESSION['customer_email']]['discount'];
                                                             $name = $_SESSION['coupen'][$_SESSION['customer_email']]['name'];
-                                                            }
-                                                                $coupen = new coupen();
-                                                                $rows = $coupen->detailsCoupen($id = '');
-                                                                foreach($rows as $row) {
                                                             ?>
                                                                 <div class="coupen-box">
-                                                                    <h4><?php echo $row['coupen_name']; ?></h4>
-                                                                    <button class="input-group-text <?php if(isset($_SESSION['coupen'])) { if($row['coupen_name']==$name){?>remove<?php } else {?>coupen<?php } }else {?>coupen<?php }?>" data-id="<?php echo $row['coupen_id'];?>"><?php if(isset($_SESSION['coupen'])) { if($row['coupen_name']==$name){?>Remove<?php } else {?>Apply<?php } } else {?>Apply<?php } ?></button>
+                                                                    <h3>Applied Coupen:</h3>
+                                                                    <div class="coupen-input">
+                                                                    <h4><?php echo $name; ?></h4>
+                                                                    <button class="btn btn-danger remove">Remove</button>
+                                                                    </div>
                                                                 </div>
-                                                            <?php }  ?>
-                                                        </div>
+                                                            <?php }  } ?>
+                                                    </div>
                                                     <form>
                                                         <div class="form-group">
                                                             <label for="specialNotes">Firstname:</label>
