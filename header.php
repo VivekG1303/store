@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-    include_once 'insert.php';
+    include_once 'controller.php';
     include_once 'classes/inc/autoload.php';
 
 ?>

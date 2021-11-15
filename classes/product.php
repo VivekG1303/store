@@ -314,8 +314,9 @@ class product extends database {
         while ($row = mysqli_fetch_assoc($select)) {
             $data = $row;
         }
-       
-        return $data;
+       if(isset($data)) {
+            return $data;
+        }
     }
 
     public function quantityCheckProduct($id, $value)
@@ -335,24 +336,24 @@ class product extends database {
 
     public function searchProduct($name)
     {
-        
-
         $sql = "SELECT product_id FROM product WHERE product_name='".$name."'";
 
         $select = mysqli_query($this->conn, $sql);
 
         $row = mysqli_fetch_assoc($select);
-
+        $pid = '';
+        if(isset($row['product_id'])){
         $pid = $row['product_id'];
-
+        }
         $sql1 = "SELECT category_id FROM category WHERE category_name='".$name."'";
 
         $select1 = mysqli_query($this->conn, $sql1);
 
         $row1 = mysqli_fetch_assoc($select1);
-
+        $cid = '';
+        if(isset($row['category_id'])){
         $cid = $row1['category_id'];
-
+        }
         $data = array('pid'=>$pid, 'cid'=>$cid);
 
         return $data;
@@ -428,8 +429,10 @@ class product extends database {
             $select = mysqli_query($this->conn, $sql);
     
             $data = array();
-            while ($row = mysqli_fetch_assoc($select)) {
-                $data[] = $row;
+            if(!empty($select)) {
+                while ($row = mysqli_fetch_assoc($select)) {
+                    $data[] = $row;
+                }
             }
            
             return $data;

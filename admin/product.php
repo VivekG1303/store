@@ -51,8 +51,8 @@
                                 <td><?php echo $row['product_status']; ?></td>
                                 <td><?php echo $row['created_at']; ?></td>
                                 <td><?php echo $row['updated_at']; ?></td>
-                                <td><button type="button" class="btn btn-primary product-update" data-toggle="modal" data-target="#productUpdateModal" data-id="<?php echo $row['product_id'];?>">Update</button>
-                                    <button type="button" class="btn btn-primary product-delete" data-id="<?php echo $row['product_id'];?>">Delete</button></td>
+                                <td><button type="button" class="btn btn-primary product-update margin-button" data-toggle="modal" data-target="#productUpdateModal" data-id="<?php echo $row['product_id'];?>">Update</button>
+                                    <button type="button" class="btn btn-primary product-delete margin-button" data-id="<?php echo $row['product_id'];?>">Delete</button></td>
                             </tr>
                             <?php
                             }?>

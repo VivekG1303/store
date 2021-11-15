@@ -21,7 +21,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/insert.php',
+                    url: 'http://localhost/store/controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -72,23 +72,20 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
-    
                 if(response == 1){
-            // Remove row from HTML Table
-            $(el).closest('tr').css('background','tomato');
-            $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-            });
+                    // Remove row from HTML Table
+                    $(el).closest('tr').css('background','tomato');
+                    $(el).closest('tr').fadeOut(800,function(){
+                        $(this).remove();
+                    });
                 }
-    
             }
             });
         }
-
     });
 
 //Product Functionality
@@ -101,7 +98,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -137,7 +134,7 @@ $(document).ready(function() {
                 if (confirm('Are you sure ?') == true) {
                     $.ajax({
                         type: 'POST',
-                        url: 'http://localhost/store/insert.php',
+                        url: 'http://localhost/store/controller.php',
                         data: { id:editid , action:action, image:image},
                         dataType: 'json',
                         success: function() {
@@ -151,8 +148,7 @@ $(document).ready(function() {
 
             });
 
-            $("#product-detail-update").on('submit', function(e){
-                e.preventDefault();
+            $("#product-detail-update").on('submit', function(){
                 
                 var editid = edit.editid;
 
@@ -162,7 +158,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/insert.php',
+                    url: 'http://localhost/store/controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -187,19 +183,18 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
     
                 if(response == 1){
-            // Remove row from HTML Table
-            $(el).closest('tr').css('background','tomato');
-            $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-            });
+                    // Remove row from HTML Table
+                    $(el).closest('tr').css('background','tomato');
+                    $(el).closest('tr').fadeOut(800,function(){
+                        $(this).remove();
+                    });
                 }
-    
             }
             });
         }
@@ -213,7 +208,7 @@ $(document).ready(function() {
         var action = 'product_search';
 
         $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: {action:action, name:name},
             dataType: 'json',
@@ -242,7 +237,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -265,7 +260,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/insert.php',
+                    url: 'http://localhost/store/controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -290,17 +285,17 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
     
                 if(response == 1){
-            // Remove row from HTML Table
-            $(el).closest('tr').css('background','tomato');
-            $(el).closest('tr').fadeOut(800,function(){
-                $(this).remove();
-            });
+                    // Remove row from HTML Table
+                    $(el).closest('tr').css('background','tomato');
+                    $(el).closest('tr').fadeOut(800,function(){
+                        $(this).remove();
+                    });
                 }
     
             }
@@ -320,7 +315,7 @@ $(document).ready(function() {
         var action = 'product_quantity_check';
 
         $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { value:value, id:id, action:action },
             success: function(response){
@@ -344,7 +339,7 @@ $(document).ready(function() {
         var action = 'product_quantity_check';
 
         $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { value:value, id:id, action:action },
             success: function(response){
@@ -362,14 +357,14 @@ $(document).ready(function() {
     });
 
     //Cart Warning
-    $('.add-to-cart').on('click', function() {
+    $('.add-to-cart-1').on('click', function() {
         var value = $('#product-cart-quantity').val();
 
         var id = $('#qtyCheck').val();
 
         var action = 'add_to_cart';
         $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { value:value, id:id, action:action },
             success: function(response){
@@ -383,7 +378,7 @@ $(document).ready(function() {
         var id = $(this).attr('id');
         var action = 'delete_from_cart';
         $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:id, action:action }
         });
@@ -396,7 +391,7 @@ $(document).ready(function() {
         var value = $(this).parent().siblings('.update-quantity').children('#product-cart-quantity1').val();
         var action = 'update_cart_item';
         $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { value:value, id:id, action:action }
         });   
@@ -407,7 +402,7 @@ $(document).ready(function() {
     $('.clear-cart').on('click', function() {
         var action = 'clear_cart';
         $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: {action:action},
             success: function(response) {
@@ -427,7 +422,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -445,7 +440,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/insert.php',
+                    url: 'http://localhost/store/controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -470,7 +465,7 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
@@ -495,7 +490,7 @@ $(document).ready(function() {
         var action = 'apply_coupen';
 
         $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: {id:id, action:action},
             success: function(response) {
@@ -509,7 +504,7 @@ $(document).ready(function() {
         var action = 'remove_coupen';
 
         $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: {action:action},
             success: function() {
@@ -541,7 +536,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -562,7 +557,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/insert.php',
+                    url: 'http://localhost/store/controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -587,7 +582,7 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/insert.php',
+            url: 'http://localhost/store/controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){

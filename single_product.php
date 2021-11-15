@@ -4,12 +4,14 @@ $id = $_GET['pid'];
 
 <?php include_once 'header.php'; ?>
 <?php include_once 'template-parts/navbar.php'; ?>
-<div class="container_fluid">
+<div class="container-fluid no-padding">
+<?php if(isset($id)) { ?>
     <div class="row">
         <div class="col-sm-6">
             <?php
                 $singleProduct = new product();
                 $data = $singleProduct->singleProduct($id);
+                if(isset($data)) {
                 $image = unserialize($data['product_image']);
                 $i=0;
             ?>
@@ -54,13 +56,21 @@ $id = $_GET['pid'];
                 <p class="product-description">SKU: <?php echo $data['product_sku']; ?></p>
                 <lable>Qty: </lable><input type="number" name="product_cart_quantity" min=1 id="product-cart-quantity" value="1">
                 <input type="hidden" name="qtyCheck" id="qtyCheck" value="<?php echo $data['product_id']; ?>">
-                <p class="warning-message"></p>
-                <a href="product_cart.php" id="click"><button class="add-to-cart warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>Add to cart</button></a>
+                <p class="warning-message" id="warning"></p>
+                <?php if($data['product_status'] == 'disabled') {?><p id="warning">Not Available Right Now!!</p><?php }?>
+                <a href="product_cart.php" id="click"><button class="add-to-cart-1 warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>Add to cart</button></a>
             </div>
         </div>
-        <div>
-
+        <?php } else { ?>
+        <div class="text-center">
+            <h2>No result found!</h2>
         </div>
-    </div>
+        <?php } ?>
+    </div> 
+    <?php } else { ?>
+        <div class="container text-center">
+            <h2>No result found!</h2>
+        </div>
+    <?php } ?>
 </div>
 <?php include_once 'footer.php'; ?>

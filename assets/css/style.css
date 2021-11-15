@@ -1,3 +1,7 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+}
+
 /* Admin Login  */
 .form {
     display: flex;
@@ -130,6 +134,10 @@
     width: 120px;
 }
 
+.login-navbar a {
+    font-weight: 900;
+}
+
 /* Validatin CSS */
 .error {
     color: #ff0000;
@@ -159,6 +167,9 @@
     height:auto;
 }
 body .carousel-indicators li{
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
     background-color: #303030;
 }
 body .carousel-indicators{
@@ -166,7 +177,7 @@ body .carousel-indicators{
 }
 body .carousel-control-prev-icon,
 body .carousel-control-next-icon{
-    background-color: #303030;
+    background-color: #000000;
 }
 body .no-padding{
     padding-left: 0;
@@ -218,19 +229,19 @@ body .no-padding{
     padding: 10px;
 }
 
-.add-to-cart {
+.add-to-cart, .add-to-cart-1 {
     border: 1px solid #eb8b32;
     border-radius: 15px;
     padding: 5px 10px;
     background-color: #ffffff;
 }
 
-.add-to-cart a {
+.add-to-cart a, .add-to-cart-1 a {
     text-decoration: none;
     color: #000000;
 }
 
-.add-to-cart:hover {
+.add-to-cart:hover, .add-to-cart-1:hover {
     background-color: #eb8b32;
     color: #ffffff;
 }
@@ -274,7 +285,7 @@ body .no-padding{
     margin-top: 0;
 }
   
-.add-to-cart, .like {
+.add-to-cart, .like, .add-to-cart-1 {
     background: #eb8b32;
     padding: 10px 20px;
     border: none;
@@ -283,7 +294,7 @@ body .no-padding{
     color: #fff;
     -webkit-transition: background .3s ease;
             transition: background .3s ease; }
-    .add-to-cart:hover, .like:hover {
+    .add-to-cart:hover, .like:hover, .add-to-cart-1:hover {
       background: #b36800;
       color: #fff; 
 }
@@ -389,4 +400,12 @@ body{
 .search-navbar {
     color: #ffffff;
     padding: 10px 10px 0;
+}
+
+button:disabled {
+    cursor: not-allowed;
+  }
+
+.margin-button {
+    margin: 0 0 5px 10px;
 }

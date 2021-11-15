@@ -36,7 +36,7 @@
         </li>
         <?php if(isset($_SESSION['customer_firstname'])) {?>
         <li class="nav-item">
-        <h5 class="customer-name"><?php echo $_SESSION['customer_firstname']; ?></h5>
+        <h5 class="customer-name"><i class="fas fa-user-circle"></i> <?php echo $_SESSION['customer_firstname']; ?></h5>
         </li>
         <?php }?>
         <li class="nav-item">

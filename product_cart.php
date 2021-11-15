@@ -58,8 +58,8 @@
                                                     <?php } ?>
                                                 </tbody>
                                             </table>
-                                            <p class="warning-message1"></p>
-                                            <a href="index.php" class="btn btn-success my-1">Add More items</a>
+                                            <p class="warning-message1" id="warning"></p>
+                                            <a href="index.php" class="btn btn-info my-1">Add More items</a>
                                             <button type="button" class="btn btn-danger my-1 clear-cart"><i class="fas fa-trash-alt"></i> Clear Cart</button>
                                         </div>
                                     </div>
@@ -136,7 +136,7 @@
                                                                     $total -= $discount_total*0.01*$discount;?></td>
                                                             </tr>
                                                             <tr>
-                                                                <td colspan="2">You have applied <?php echo $name; ?> to get <?php echo $discount;?>%.</td>
+                                                                <td colspan="2" class="text-success">You have applied <?php echo $name; ?> to get <?php echo $discount;?>%.</td>
                                                             </tr>
                                                             <?php } ?>
                                                             <tr>

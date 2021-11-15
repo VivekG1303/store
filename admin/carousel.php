@@ -35,8 +35,8 @@ if(isset($_SESSION['admin_userid']) && isset($_SESSION['admin_password'])) {
                                 <td><?php echo $row['carousel_id']; ?></td>
                                 <td><img src="http://localhost/store/upload/carousel_image/<?php echo $row['carousel_image']; ?>" id="category-thumbnail" alt="category-thumbnail"></td>
                                 <td><?php echo $row['carousel_link']; ?></td>
-                                <td><button type="button" class="btn btn-primary carousel-update" data-toggle="modal" data-target="#carouselUpdateModal" data-id="<?php echo $row['carousel_id'];?>">Update</button>
-                                    <button type="button" class="btn btn-primary carousel-delete" data-id="<?php echo $row['carousel_id'];?>">Delete</button></td>
+                                <td><button type="button" class="btn btn-primary carousel-update margin-button" data-toggle="modal" data-target="#carouselUpdateModal" data-id="<?php echo $row['carousel_id'];?>">Update</button>
+                                    <button type="button" class="btn btn-primary carousel-delete margin-button" data-id="<?php echo $row['carousel_id'];?>">Delete</button></td>
                             </tr>
                             <?php 
                             }?>

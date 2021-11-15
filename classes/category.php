@@ -106,17 +106,13 @@ class category extends database {
     public function deleteCategory($id)
     {
         $sql = "SELECT category_image FROM category WHERE category_id=". $id;
-
         $select = mysqli_query($this->conn, $sql);
 
         while($row = mysqli_fetch_assoc($select)) {
-
         unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/category_image/".$row['category_image']);
-
         }
 
         $sql = "DELETE FROM category WHERE category_id=".$id;
-
         $delete = mysqli_query($this->conn, $sql);
 
         if ($delete) {
@@ -130,18 +126,18 @@ class category extends database {
         if(!empty($id)) {
 
             $sql = "SELECT * FROM category WHERE category_id=".$id;
-
             $select = mysqli_query($this->conn, $sql);
 
             while ($row = mysqli_fetch_assoc($select)) {
                 $data = $row;
             }
-            return $data;
+            if(isset($data)) {
+                return $data;
+            }
 
         } else {
 
             $sql = "SELECT * FROM category";
-
             $select = mysqli_query($this->conn, $sql);
 
             $data = array();

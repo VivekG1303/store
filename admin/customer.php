@@ -18,7 +18,7 @@
             <!-- Display Category -->
             <div class="container">
                 <div class="col-sm-12 category-table">
-                    <table id="data-table">
+                    <table id="data-table" class="product-table">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -47,8 +47,8 @@
                                 <td><?php echo $row['customer_address']; ?></td>
                                 <td><?php echo $row['created_at']; ?></td>
                                 <td><?php echo $row['updated_at']; ?></td>
-                                <td><button type="button" class="btn btn-primary customer-update" data-toggle="modal" data-target="#customerUpdateModal" data-id="<?php echo $row['customer_id'];?>">Update</button>
-                                    <button type="button" class="btn btn-primary customer-delete" data-id="<?php echo $row['customer_id'];?>">Delete</button></td>
+                                <td><button type="button" class="btn btn-primary customer-update margin-button" data-toggle="modal" data-target="#customerUpdateModal" data-id="<?php echo $row['customer_id'];?>">Update</button>
+                                    <button type="button" class="btn btn-primary customer-delete margin-button" data-id="<?php echo $row['customer_id'];?>">Delete</button></td>
                             </tr>
                             <?php   
                             }?>

@@ -13,10 +13,12 @@ if(!isset($_GET['order'])) {
 ?>
 <?php include_once 'header.php'; ?>
 <?php include_once 'template-parts/navbar.php'; ?>
+<?php if(isset($id)) { ?>
 <div class="container-fluid no-padding">
     <?php 
     $category = new category();
     $data = $category->detailsCategory($id);
+    if(isset($data)) {
     ?>
     <div class="container-fluid category-banner no-padding">
         <img src="upload/category_image/<?php echo $data['category_image']; ?>">
@@ -72,5 +74,15 @@ if(!isset($_GET['order'])) {
         </ul>
         </nav>
     </div>
+    <?php } else { ?>
+        <div class="container text-center">
+            <h2>No result found!</h2>
+        </div>
+    <?php } ?>
 </div>
+<?php } else { ?>
+        <div class="container text-center">
+            <h2>No result found!</h2>
+        </div>
+<?php } ?>
 <?php include_once 'footer.php'; ?>
