@@ -65,13 +65,13 @@ if(!isset($_GET['order'])) {
         </div>
     </div>
     <div class="container">
-    <nav aria-label="...">
-        <ul class="pagination pagination-lg">
-        <?php  $productNumber = $catProduct->countProduct($id); 
-        for($i=1; $i<=$productNumber; $i++) {?>
-            <li class="page-item"><button class="page-link pagination-1" data-id=<?php echo $i; ?>><?php echo $i; ?></a></li>
-        <?php } ?>
-        </ul>
+        <nav aria-label="...">
+            <ul class="pagination justify-content-center">
+            <?php  $productNumber = $catProduct->countProduct($id); 
+            for($i=1; $i<=$productNumber; $i++) {?>
+                <li class="page-item"><button class="page-link pagination-1" data-id=<?php echo $i; ?>><?php echo $i; ?></a></li>
+            <?php } ?>
+            </ul>
         </nav>
     </div>
     <?php } else { ?>

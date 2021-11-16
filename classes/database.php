@@ -1,16 +1,16 @@
 <?php
 
 class database {
-    const host = 'localhost';
-    const username = 'root';
-    const password = 'Admin@123';
-    const db = 'store';
+    const HOST = 'localhost';
+    const USERNAME = 'root';
+    const PASSWORD = 'Admin@123';
+    const DB = 'store';
 
     protected $conn;
 
     public function __construct()
     {
-        $this->conn = mysqli_connect(self::host, self::username, self::password, self::db);
+        $this->conn = mysqli_connect(self::HOST, self::USERNAME, self::PASSWORD, self::DB);
 
         return $this->conn;
     }

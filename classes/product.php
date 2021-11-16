@@ -327,7 +327,7 @@ class product extends database {
 
         $row = mysqli_fetch_assoc($select);
 
-        if($value<$row['product_quantity']) {
+        if($value<=$row['product_quantity']) {
             return 4;
         } else {
             return 5;
@@ -351,7 +351,7 @@ class product extends database {
 
         $row1 = mysqli_fetch_assoc($select1);
         $cid = '';
-        if(isset($row['category_id'])){
+        if(isset($row1['category_id'])){
         $cid = $row1['category_id'];
         }
         $data = array('pid'=>$pid, 'cid'=>$cid);

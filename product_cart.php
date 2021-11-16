@@ -74,10 +74,13 @@
                                                         <input type="search" class="form-control rounded" id="coupen-name" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                                                         <button class="coupen btn btn-info">Apply</button>
                                                         </div>
+                                                        <div class="search-coupen"></div>
                                                             <?php
                                                             if(isset($_SESSION['coupen'])) {
-                                                            $discount = $_SESSION['coupen'][$_SESSION['customer_email']]['discount'];
-                                                            $name = $_SESSION['coupen'][$_SESSION['customer_email']]['name'];
+                                                                $discount = $_SESSION['coupen'][$_SESSION['customer_email']]['discount'];
+                                                                $name = $_SESSION['coupen'][$_SESSION['customer_email']]['name'];
+                                                            }
+                                                            if(!empty($_SESSION['coupen'][$_SESSION['customer_email']]['discount'])) {
                                                             ?>
                                                                 <div class="coupen-box">
                                                                     <h3>Applied Coupen:</h3>

@@ -7,18 +7,19 @@
         $rows = $category->detailsCategory($id = '');
         foreach($rows as $row) {
     ?>
+    <?php
+        $id = $row['category_id'];
+
+        $catProduct = new product();
+        $data = $catProduct->categoryProduct($id);
+        $i = 0;
+        $c = 0;
+    ?>
     <div class="category">
         <div id="demo<?php echo $row['category_id']; ?>" class="container carousel slide" data-ride="carousel" data-interval="6000">
+        <?php if(!empty($data)) {?>
         <a href="single_category.php?id=<?php echo $row['category_id']; ?>" class="category-display"><h3><?php echo $row['category_name']; ?></h3></a>
-        
-        <?php
-            $id = $row['category_id'];
-
-            $catProduct = new product();
-            $data = $catProduct->categoryProduct($id);
-            $i = 0;
-            $c = 0;
-        ?>
+        <?php } ?>
         <!-- The slideshow -->
         <div class="carousel-inner no-padding">
             <?php foreach($data as $line) {
@@ -40,7 +41,7 @@
                 </div>
             </div>
                 <?php if($i == 3) {?> </div> <?php }
-                if($i == count($data) - 1 - $c) {?> </div> <?php }
+                if($i == 7) { ?> </div> <?php } elseif($i == count($data) - 1 - $c) {?> </div> <?php }
                     $i++; }
                 } else { $c++; } } ?>
             

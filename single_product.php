@@ -58,7 +58,12 @@ $id = $_GET['pid'];
                 <input type="hidden" name="qtyCheck" id="qtyCheck" value="<?php echo $data['product_id']; ?>">
                 <p class="warning-message" id="warning"></p>
                 <?php if($data['product_status'] == 'disabled') {?><p id="warning">Not Available Right Now!!</p><?php }?>
-                <a href="product_cart.php" id="click"><button class="add-to-cart-1 warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>Add to cart</button></a>
+                <?php if(isset($_SESSION['cart'][$_SESSION['customer_email']])) {?>
+                <a href="product_cart.php" id="click"><button class="add-to-cart-1 warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>
+                <?php if(in_array($data['product_id'], array_keys($_SESSION['cart'][$_SESSION['customer_email']]))) {?>Update Cart<?php } else { ?>Add to Cart<?php } ?></button></a>
+                <?php } else { ?>
+                    <a href="product_cart.php" id="click"><button class="add-to-cart-1 warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>Add to Cart</button></a>
+                <?php } ?>
             </div>
         </div>
         <?php } else { ?>

@@ -39,7 +39,7 @@
                                 <tr>
                                     <td><?php echo $row['category_id']; ?></td>
                                     <td><?php echo $row['category_name']; ?></td>
-                                    <td><img src="http://localhost/store/upload/category_image/<?php echo $row['category_image']; ?>" id="category-thumbnail" alt="category-thumbnail"></td>
+                                    <td><img src="upload/category_image/<?php echo $row['category_image']; ?>" id="category-thumbnail" alt="category-thumbnail"></td>
                                     <td><?php echo $row['category_description']; ?></td>
                                     <td><?php echo $row['created_at']; ?></td>
                                     <td><?php echo $row['updated_at']; ?></td>
@@ -78,8 +78,6 @@
                                         <label for="category_description">Category Discreption</label>
                                         <textarea type="file" name="category_description" class="form-control" rows="5" placeholder="Category Discreption"></textarea>
                                     </div>
-                                        <p id="warning"><?php echo isset($message) ? $message : '';?></p>
-                                        <p id="success"><?php echo isset($success) ? $success : '';?></p>
                                     <input type="hidden" name="action" value="category_register">
                                     <input type="submit" class="btn btn-primary category-register-button" value="Register">
                                 </div>
@@ -116,7 +114,6 @@
                                         <label for="category_description">Category Description</label>
                                         <textarea id="categoryDescription" name="category_description" class="form-control" rows="5" placeholder="Category Discreption"></textarea>
                                     </div>
-                                    <p id="success"><?php echo isset($success) ? $success : '';?></p>
                                     <input type="hidden" name="action" value="category_update">
                                     <input type="submit" class="btn btn-primary category-update-button" value="Update">
                                 </div>

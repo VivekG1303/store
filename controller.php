@@ -1,10 +1,10 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 include_once 'classes/inc/autoload.php';
-if (!isset($_SESSION)) { session_start(); }
+session_start();
 if(isset($_POST['action'])) {
     $action_id = $_POST['action'];
 } else {
@@ -125,6 +125,7 @@ class action {
             $check = $category->checkCategory($category_name);
             if ($check) {
                 $message = 'Category already added!';
+                return $message;
             } else {            
                 $files = $_FILES;
                 $category_name = $_POST['category_name'];
@@ -134,6 +135,7 @@ class action {
                 $insert = $category->insertCategory($files, $category_name, $category_description, $created_at);
                 if ($insert) {
                 $success = "New Category Added";
+                return $success;
                 }
             }
         }
@@ -184,7 +186,8 @@ class action {
             $product = new product();
             $check = $product->checkProduct($product_name);
             if ($check) {
-                $message = 'Product already added!';  
+                $message = 'Product already added!';
+                return $message;
             } else {
                 $files = $_FILES;
                 $product_name = $_POST['product_name'];
@@ -199,7 +202,8 @@ class action {
                 $insert = $product->insertProduct($files, $product_name, $product_category, $product_sku, $product_description, $product_price, $product_quantity, $product_status);
     
                 if ($insert) {
-                    $message = "New Product Added";
+                    $success = "New Product Added";
+                    return $success;
                 }
             }
         }
@@ -332,16 +336,23 @@ class action {
     {
         $id = $_POST['id'];
         $name = 'Try';
-        $unique = $_SESSION['customer_email'];
 
         $coupen = new coupen();
         $data = $coupen->detailsCoupen($id, $name);
+        if(!empty($data['coupen_name'])) {
 
-        $discount = $data['coupen_discount'];
-        $name = $data['coupen_name'];
+            $unique = $_SESSION['customer_email'];
+            $discount = $data['coupen_discount'];
+            $name = $data['coupen_name'];
 
-        $coupenCart = new cart();
-        $apply = $coupenCart->coupenCart($discount, $unique, $name);
+            $coupenCart = new cart();
+            $apply = $coupenCart->coupenCart($discount, $unique, $name);
+         
+            echo 1;
+        } else {
+            echo 2;
+        }
+        
     }
 
     public function removeCoupenDetails()
@@ -522,7 +533,7 @@ class action {
 }
 
 $action = new action();
-$action->getAction($action_id);
+$message = $action->getAction($action_id);
 
 
 ?>

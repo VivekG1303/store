@@ -21,7 +21,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/controller.php',
+                    url: '../controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -72,7 +72,7 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
@@ -98,7 +98,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -134,7 +134,7 @@ $(document).ready(function() {
                 if (confirm('Are you sure ?') == true) {
                     $.ajax({
                         type: 'POST',
-                        url: 'http://localhost/store/controller.php',
+                        url: '../controller.php',
                         data: { id:editid , action:action, image:image},
                         dataType: 'json',
                         success: function() {
@@ -145,7 +145,6 @@ $(document).ready(function() {
 
                     });
                 }
-
             });
 
             $("#product-detail-update").on('submit', function(){
@@ -158,7 +157,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/controller.php',
+                    url: '../controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -183,7 +182,7 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
@@ -208,16 +207,16 @@ $(document).ready(function() {
         var action = 'product_search';
 
         $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: 'controller.php',
             type: 'POST',
             data: {action:action, name:name},
             dataType: 'json',
             success: function(response) {
-                if(response.pid != null) {
+                if(response.pid != '') {
                     window.location.href="single_product.php?pid="+response.pid;
-                } else if(response.cid != null) {
+                } else if(response.cid != '') {
                     window.location.href="single_category.php?id="+response.cid;
-                } else if (response.pid == null && response.pid == null) {
+                } else if (response.pid == '' && response.pid == '') {
                     $('.search-navbar').append("<div id='no-result-message'><h6>No result found!</h6></div>");
                     setTimeout(function() {
                     $('#no-result-message').remove();
@@ -237,7 +236,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -260,7 +259,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/controller.php',
+                    url: '../controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -285,7 +284,7 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
@@ -315,7 +314,7 @@ $(document).ready(function() {
         var action = 'product_quantity_check';
 
         $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: 'controller.php',
             type: 'POST',
             data: { value:value, id:id, action:action },
             success: function(response){
@@ -339,7 +338,7 @@ $(document).ready(function() {
         var action = 'product_quantity_check';
 
         $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: 'controller.php',
             type: 'POST',
             data: { value:value, id:id, action:action },
             success: function(response){
@@ -364,7 +363,7 @@ $(document).ready(function() {
 
         var action = 'add_to_cart';
         $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: 'controller.php',
             type: 'POST',
             data: { value:value, id:id, action:action },
             success: function(response){
@@ -378,7 +377,7 @@ $(document).ready(function() {
         var id = $(this).attr('id');
         var action = 'delete_from_cart';
         $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: 'controller.php',
             type: 'POST',
             data: { id:id, action:action }
         });
@@ -391,7 +390,7 @@ $(document).ready(function() {
         var value = $(this).parent().siblings('.update-quantity').children('#product-cart-quantity1').val();
         var action = 'update_cart_item';
         $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: 'controller.php',
             type: 'POST',
             data: { value:value, id:id, action:action }
         });   
@@ -402,7 +401,7 @@ $(document).ready(function() {
     $('.clear-cart').on('click', function() {
         var action = 'clear_cart';
         $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: 'controller.php',
             type: 'POST',
             data: {action:action},
             success: function(response) {
@@ -422,7 +421,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -440,7 +439,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/controller.php',
+                    url: '../controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -465,7 +464,7 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
@@ -490,11 +489,18 @@ $(document).ready(function() {
         var action = 'apply_coupen';
 
         $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: 'controller.php',
             type: 'POST',
             data: {id:id, action:action},
             success: function(response) {
-                window.location.reload();
+                if(response == 1) {
+                    window.location.reload();
+                } else {
+                    $('.search-coupen').append("<div id='no-result-message' class='text-danger'><h6>No result found!</h6></div>");
+                    setTimeout(function() {
+                    $('#no-result-message').remove();
+                    }, 5000);
+                }
             }
         });
     });
@@ -504,7 +510,7 @@ $(document).ready(function() {
         var action = 'remove_coupen';
 
         $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: 'controller.php',
             type: 'POST',
             data: {action:action},
             success: function() {
@@ -536,7 +542,7 @@ $(document).ready(function() {
             
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:viewid, action:actionid },
             dataType: 'json',
@@ -557,7 +563,7 @@ $(document).ready(function() {
 
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost/store/controller.php',
+                    url: '../controller.php',
                     data: formData,
                     dataType: 'json',
                     contentType: false,
@@ -582,7 +588,7 @@ $(document).ready(function() {
         if (confirm('Are you sure ?') == true) {
             // AJAX Request
             $.ajax({
-            url: 'http://localhost/store/controller.php',
+            url: '../controller.php',
             type: 'POST',
             data: { id:deleteid, action:action },
             success: function(response){
@@ -590,7 +596,7 @@ $(document).ready(function() {
                     // Remove row from HTML Table
                     $(el).closest('tr').css('background','tomato');
                     $(el).closest('tr').fadeOut(800,function(){
-                        $(this).remove();
+                    $(this).remove();
                     });
                 }
             }
