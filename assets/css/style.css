@@ -42,7 +42,7 @@ body {
     background-color: #ececec;
 }
 
-.admin-sidebar div:hover {
+.admin-sidebar div:hover, .admin-sidebar .sidebar-active {
     background-color: #000000;
     color: #ffffff;
 }
