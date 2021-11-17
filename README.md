@@ -1,3 +1,7 @@
 # store
 Hi
-chanagehdegit statusjkhjsgjd212154654654
+
+Constant should be in capital latter
+
+Try fit action part in class functions
+

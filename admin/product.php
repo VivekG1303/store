@@ -51,8 +51,8 @@
                                 <td><?php echo $row['product_status']; ?></td>
                                 <td><?php echo $row['created_at']; ?></td>
                                 <td><?php echo $row['updated_at']; ?></td>
-                                <td><button type="button" class="btn btn-primary product-update" data-toggle="modal" data-target="#productUpdateModal" data-id="<?php echo $row['product_id'];?>">Update</button>
-                                    <button type="button" class="btn btn-primary product-delete" data-id="<?php echo $row['product_id'];?>">Delete</button></td>
+                                <td><button type="button" class="btn btn-primary product-update margin-button" data-toggle="modal" data-target="#productUpdateModal" data-id="<?php echo $row['product_id'];?>">Update</button>
+                                    <button type="button" class="btn btn-primary product-delete margin-button" data-id="<?php echo $row['product_id'];?>">Delete</button></td>
                             </tr>
                             <?php
                             }?>
@@ -80,13 +80,12 @@
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label for="product_category">Category</label><br>
-                                            <?php $sql = "SELECT category_id, category_name FROM category";
-                                                $select = mysqli_query($conn, $sql);
-                                                if(mysqli_num_rows($select) > 0) {
-                                                    while($row = mysqli_fetch_assoc($select)) {?>
-                                            <input type="checkbox" name="product_category[]" value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?><br>
-                                            <?php }
-                                            } ?>
+                                            <?php 
+                                            $category = new category();
+                                            $rows = $category->detailsCategory($id = '');
+                                            foreach($rows as $row) {?>
+                                                <input type="checkbox" name="product_category[]" value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?><br>
+                                            <?php } ?>
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label for="product_sku">Product SKU</label>
@@ -145,13 +144,12 @@
                                     </div>
                                     <div class="form-group col-sm-12" id="category-checkbox">
                                         <label for="product_category">Category</label><br>
-                                            <?php $sql = "SELECT category_id, category_name FROM category";
-                                                $select = mysqli_query($conn, $sql);
-                                                if(mysqli_num_rows($select) > 0) {
-                                                    while($row = mysqli_fetch_assoc($select)) {?>
-                                            <input type="checkbox" name="product_category[]" value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?><br>
-                                            <?php }
-                                            } ?>
+                                            <?php 
+                                            $category = new category();
+                                            $rows = $category->detailsCategory($id = '');
+                                            foreach($rows as $row) {?>
+                                                <input type="checkbox" name="product_category[]" value="<?php echo $row['category_id']; ?>"><?php echo $row['category_name']; ?><br>
+                                            <?php } ?>
                                     </div>
                                     <div class="form-group col-sm-12">
                                         <label for="product_sku">Product SKU</label>

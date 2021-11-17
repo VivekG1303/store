@@ -11,7 +11,7 @@ class category extends database {
     {
         $sql = "SELECT category_name FROM category WHERE category_name='".$category_name."'";
 
-        $select = mysqli_query($this->conn, $sql);
+        $select = mysqli_query($this->getConnection(), $sql);
 
         if (mysqli_num_rows($select) > 0) {
             return true;
@@ -84,7 +84,7 @@ class category extends database {
                     // Insert image file name into database
                     $sql = "UPDATE category SET category_image='".$fileName."', updated_at='".$updated_at."' WHERE category_id=".$_POST['id'];
 
-                    $update = mysqli_query($this->conn, $sql);
+                    $update = mysqli_query($this->getConnection(), $sql);
 
                 }
             }
@@ -106,17 +106,13 @@ class category extends database {
     public function deleteCategory($id)
     {
         $sql = "SELECT category_image FROM category WHERE category_id=". $id;
-
         $select = mysqli_query($this->conn, $sql);
 
         while($row = mysqli_fetch_assoc($select)) {
-
         unlink($_SERVER['DOCUMENT_ROOT'] . "/store/upload/category_image/".$row['category_image']);
-
         }
 
         $sql = "DELETE FROM category WHERE category_id=".$id;
-
         $delete = mysqli_query($this->conn, $sql);
 
         if ($delete) {
@@ -130,18 +126,18 @@ class category extends database {
         if(!empty($id)) {
 
             $sql = "SELECT * FROM category WHERE category_id=".$id;
-
             $select = mysqli_query($this->conn, $sql);
 
             while ($row = mysqli_fetch_assoc($select)) {
                 $data = $row;
             }
-            return $data;
+            if(isset($data)) {
+                return $data;
+            }
 
         } else {
 
             $sql = "SELECT * FROM category";
-
             $select = mysqli_query($this->conn, $sql);
 
             $data = array();

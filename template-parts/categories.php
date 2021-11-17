@@ -1,24 +1,29 @@
 <div>
+    <div class="container category-header">
     <h1>Categories</h1>
+    </div>
     <?php 
         $category = new category();
         $rows = $category->detailsCategory($id = '');
         foreach($rows as $row) {
     ?>
-    <div class="category">
-        <div id="demo<?php echo $row['category_id']; ?>" class=" container carousel slide" data-ride="carousel">
-        <a href="single_category.php?id=<?php echo $row['category_id']; ?>" class="category-display"><h3><?php echo $row['category_name']; ?></h3></a>
-        
-        <?php
-            $id = $row['category_id'];
+    <?php
+        $id = $row['category_id'];
 
-            $catProduct = new product();
-            $data = $catProduct->categoryProduct($id);
-            $i = 0;
-        ?>
+        $catProduct = new product();
+        $data = $catProduct->categoryProduct($id);
+        $i = 0;
+        $c = 0;
+    ?>
+    <div class="category">
+        <div id="demo<?php echo $row['category_id']; ?>" class="container carousel slide" data-ride="carousel" data-interval="6000">
+        <?php if(!empty($data)) {?>
+        <a href="single_category.php?id=<?php echo $row['category_id']; ?>" class="category-display"><h3><?php echo $row['category_name']; ?></h3></a>
+        <?php } ?>
         <!-- The slideshow -->
         <div class="carousel-inner no-padding">
-            <?php foreach($data as $line) { 
+            <?php foreach($data as $line) {
+                if($line['product_status'] == 'enabled') { 
                 if($i<8) { 
                 $image = unserialize($line['product_image']);
                     if($i == 0) {?> <div class="carousel-item active"> <?php } 
@@ -36,9 +41,9 @@
                 </div>
             </div>
                 <?php if($i == 3) {?> </div> <?php }
-                if($i == count($data) - 1) {?> </div> <?php }
+                if($i == 7) { ?> </div> <?php } elseif($i == count($data) - 1 - $c) {?> </div> <?php }
                     $i++; }
-                } ?>
+                } else { $c++; } } ?>
             
             <a class="carousel-control-prev" href="#demo<?php echo $row['category_id']; ?>" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>

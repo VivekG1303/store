@@ -1,3 +1,7 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+}
+
 /* Admin Login  */
 .form {
     display: flex;
@@ -38,7 +42,7 @@
     background-color: #ececec;
 }
 
-.admin-sidebar div:hover {
+.admin-sidebar div:hover, .admin-sidebar .sidebar-active {
     background-color: #000000;
     color: #ffffff;
 }
@@ -130,6 +134,10 @@
     width: 120px;
 }
 
+.login-navbar a {
+    font-weight: 900;
+}
+
 /* Validatin CSS */
 .error {
     color: #ff0000;
@@ -159,14 +167,17 @@
     height:auto;
 }
 body .carousel-indicators li{
-    background-color: #eb8b32;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: #303030;
 }
 body .carousel-indicators{
     bottom: 0;
 }
 body .carousel-control-prev-icon,
 body .carousel-control-next-icon{
-    background-color: #eb8b32;
+    background-color: #000000;
 }
 body .no-padding{
     padding-left: 0;
@@ -176,8 +187,8 @@ body .no-padding{
 /* Carousel Product */
 .productHome {
     padding: 10px;
-    border: 1px solid #eb8b32;
-    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    border-radius: 10px;
 }
 
 .category {
@@ -202,6 +213,11 @@ body .no-padding{
     margin: 20px 0;
 }
 
+a.category-display {
+    text-decoration: none;
+    color: #117a8b;
+}
+
 .product-card img {
     width: 100%;
     height: 150px;
@@ -213,23 +229,24 @@ body .no-padding{
 }
 
 .product-card {
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 10px;
+    box-shadow: rgba(67, 71, 85, 0.45) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
     padding: 10px;
 }
 
-.add-to-cart {
+.add-to-cart, .add-to-cart-1 {
     border: 1px solid #eb8b32;
     border-radius: 15px;
     padding: 5px 10px;
     background-color: #ffffff;
 }
 
-.add-to-cart a {
+.add-to-cart a, .add-to-cart-1 a {
     text-decoration: none;
     color: #000000;
 }
 
-.add-to-cart:hover {
+.add-to-cart:hover, .add-to-cart-1:hover {
     background-color: #eb8b32;
     color: #ffffff;
 }
@@ -273,7 +290,7 @@ body .no-padding{
     margin-top: 0;
 }
   
-.add-to-cart, .like {
+.add-to-cart, .like, .add-to-cart-1 {
     background: #eb8b32;
     padding: 10px 20px;
     border: none;
@@ -282,7 +299,7 @@ body .no-padding{
     color: #fff;
     -webkit-transition: background .3s ease;
             transition: background .3s ease; }
-    .add-to-cart:hover, .like:hover {
+    .add-to-cart:hover, .like:hover, .add-to-cart-1:hover {
       background: #b36800;
       color: #fff; 
 }
@@ -303,9 +320,101 @@ body .no-padding{
 }
 
 #product-cart-quantity {
-    width: 50px;
+    width: 150px;
 }
 
 #qtyForm {
     margin-bottom: 10px;
+}
+
+/* Add to cart */
+body{
+    background: #f4f5f7;
+}
+.cart-container {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 30px;
+}
+.cart-container .cart-body {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 30px 0 20px;
+  margin: 20px 0 30px;
+}
+
+.contentbar {
+    margin: 20px;
+}
+
+#warning {
+    color: #ff0000;
+}
+
+.hidden-button {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.coupen {
+    padding: 5px;
+}
+
+.coupen-box {
+    margin: 5px;
+}
+
+.customer-name {
+    margin: 8px 5px;
+    color: #ffffff;
+}
+
+#product-search {
+    width: 150px;
+    margin-right: 5px;
+}
+
+.category-header {
+    margin-top: 20px;
+}
+
+#coupen-name {
+    width: 150px;
+    margin-right: 10px;
+}
+
+.coupen-input {
+    display: flex;
+    margin: 10px;
+}
+
+.coupen-input div {
+    width: 100%;
+}
+
+.coupen-input h4 {
+    margin-right: 10px;
+}
+
+.search-navbar {
+    color: #ffffff;
+    padding: 10px 10px 0;
+}
+
+button:disabled {
+    cursor: not-allowed;
+  }
+
+.margin-button {
+    margin: 0 0 5px 10px;
+}
+
+.pagination {
+    margin: 20px 0;
 }

@@ -4,12 +4,14 @@ $id = $_GET['pid'];
 
 <?php include_once 'header.php'; ?>
 <?php include_once 'template-parts/navbar.php'; ?>
-<div class="container_fluid">
+<div class="container-fluid no-padding">
+<?php if(isset($id)) { ?>
     <div class="row">
         <div class="col-sm-6">
             <?php
                 $singleProduct = new product();
                 $data = $singleProduct->singleProduct($id);
+                if(isset($data)) {
                 $image = unserialize($data['product_image']);
                 $i=0;
             ?>
@@ -52,17 +54,28 @@ $id = $_GET['pid'];
 				<p class="product-description"><?php echo $data['product_description']; ?></p>
 				<h4 class="price">current price: <span>$<?php echo $data['product_price']; ?></span></h4>
                 <p class="product-description">SKU: <?php echo $data['product_sku']; ?></p>
-                <form id="qtyForm">
                 <lable>Qty: </lable><input type="number" name="product_cart_quantity" min=1 id="product-cart-quantity" value="1">
                 <input type="hidden" name="qtyCheck" id="qtyCheck" value="<?php echo $data['product_id']; ?>">
-                </form>
-                <p id="warning"></p>
-                <a href="product_cart.php?pid=<?php echo $data['product_id']; ?>" id="click"><button class="add-to-cart warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>Add To Cart</button></a>
+                <p class="warning-message" id="warning"></p>
+                <?php if($data['product_status'] == 'disabled') {?><p id="warning">Not Available Right Now!!</p><?php }?>
+                <?php if(isset($_SESSION['cart'][$_SESSION['customer_email']])) {?>
+                <a href="product_cart.php" id="click"><button class="add-to-cart-1 warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>
+                <?php if(in_array($data['product_id'], array_keys($_SESSION['cart'][$_SESSION['customer_email']]))) {?>Update Cart<?php } else { ?>Add to Cart<?php } ?></button></a>
+                <?php } else { ?>
+                    <a href="product_cart.php" id="click"><button class="add-to-cart-1 warning" <?php if($data['product_status'] == 'disabled') {?>disabled<?php }?>>Add to Cart</button></a>
+                <?php } ?>
             </div>
         </div>
-        <div>
-
+        <?php } else { ?>
+        <div class="text-center">
+            <h2>No result found!</h2>
         </div>
-    </div>
+        <?php } ?>
+    </div> 
+    <?php } else { ?>
+        <div class="container text-center">
+            <h2>No result found!</h2>
+        </div>
+    <?php } ?>
 </div>
 <?php include_once 'footer.php'; ?>
