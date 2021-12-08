@@ -53,7 +53,7 @@ $(document).ready(function() {
                     processData:false,
                     success: function(response) {
                         if (response == 1) {
-                            window.location.reload();
+                            // window.location.reload();
                         }  
                     }
 
@@ -335,7 +335,7 @@ $(document).ready(function() {
 
         var id = $('#qtyCheck').val();
 
-        var action = 'product_quantity_check';
+        var action = 'product_quantity_check2';
 
         $.ajax({
             url: 'controller.php',

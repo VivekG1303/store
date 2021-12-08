@@ -5,8 +5,11 @@ class cart {
     public function addToCart($id, $value, $unique)
     {
         if(isset($_SESSION['customer_firstname'])) {
-            if(!array_key_exists($id, $_SESSION['cart'])) {
+            if(!isset($_SESSION['cart'][$unique][$id])) {
                 $_SESSION['cart'][$unique][$id] = array('id'=>$id, 'qty'=>$value);
+            } else {
+                $value1 = $_SESSION['cart'][$unique][$id]['qty'] + $value;
+                $_SESSION['cart'][$unique][$id] = array('id'=>$id, 'qty'=>$value1);
             }
         }
     }

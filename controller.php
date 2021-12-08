@@ -49,6 +49,9 @@ class action {
             case "product_quantity_check":
                 return $this->quantityProductDetails();
                 break;
+            case "product_quantity_check2":
+                return $this->quantityProductDetails2();
+                break;
             case "add_to_cart":
                 return $this->addCartDetails();
                 break;
@@ -281,6 +284,23 @@ class action {
         $id = $_POST['id'];
         $value = $_POST['value'];
 
+        if(isset($_SESSION['cart'][$_SESSION['customer_email']][$id])){
+            $value += $_SESSION['cart'][$_SESSION['customer_email']][$id]['qty'];
+        }
+
+        $check = new product();
+        $data = $check->quantityCheckProduct($id, $value);
+
+        if($data) {
+            echo $data;
+        }
+    }
+
+    public function quantityProductDetails2()
+    {
+        $id = $_POST['id'];
+        $value = $_POST['value'];
+
         $check = new product();
         $data = $check->quantityCheckProduct($id, $value);
 
@@ -294,7 +314,7 @@ class action {
         $id = $_POST['id'];
         $value = $_POST['value'];
         $unique = $_SESSION['customer_email'];
-
+        
         $addToCart = new cart();
         $add = $addToCart->addToCart($id, $value, $unique);
 
